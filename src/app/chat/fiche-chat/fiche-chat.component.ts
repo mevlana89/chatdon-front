@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Chat } from '../model/Chat';
-import { ChatService } from '../services/chat.service';
+import { Chat } from '../Chat';
+import { ChatService } from '../chat.service';
 
 @Component({
   selector: 'app-fiche-chat',

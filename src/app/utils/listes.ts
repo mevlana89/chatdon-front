@@ -1,14 +1,14 @@
 
 module Listes {
 
-  let taille: string[] = ['petit', 'moyen', 'grand'];
-  export function tailles() {
-    return taille;
+  let tailles: string[] = ['petit', 'moyen', 'grand'];
+  export function getTailles() {
+    return tailles;
   }
 
-  let race: string[] = []
-  export function races() {
-    return race;
+  let races: string[] = []
+  export function getRaces() {
+    return races;
   }
 
 }

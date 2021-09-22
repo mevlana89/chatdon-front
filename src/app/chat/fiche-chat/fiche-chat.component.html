@@ -1,0 +1,58 @@
+<h1>{{ leChat.nom }}</h1>
+<div>
+  todo : carroussel
+  <img mat-card-image src="{{leChat.lstPhotos[0].cheminPhoto}}" >
+
+
+
+  <mat-slider min="1" max="100" step="1" value="50"></mat-slider>
+</div>
+<mat-card>
+  <mat-card-title>Fiche de {{ leChat.nom }}</mat-card-title>
+  <mat-grid-list cols="2" rowHeight="30px">
+    <mat-grid-tile>
+      <mat-card-content>Catégorie d age : {{ leChat.categorieAge }}</mat-card-content>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card-content>Race : {{ leChat.race }}</mat-card-content>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card-content>Sexe : {{ leChat.sexe}}</mat-card-content>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card-content>Taille : {{ leChat.taille }}</mat-card-content>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card-content>Pelage : {{ leChat.pelage }}</mat-card-content>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card-content>Caractère : {{ leChat.caractere }}</mat-card-content>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card-content>Zone géographique : {{ leChat.zoneGeo }}</mat-card-content>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
+  <mat-card>
+    <mat-card-title>Sociabilité</mat-card-title>
+    <mat-grid-list cols="2" rowHeight="30px">
+    <mat-grid-tile>
+        <div><mat-checkbox [checked]=leChat.sociableEnfant >Adapté aux enfants </mat-checkbox></div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div><mat-checkbox [checked]=leChat.sociableChien >Accepte les chiens </mat-checkbox></div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div><mat-checkbox [checked]=leChat.sociableChat >Accepte les autres chats </mat-checkbox></div>
+    </mat-grid-tile>
+</mat-grid-list>
+
+</mat-card>
+
+<mat-card>
+  <ng-container *ngFor="let photos of leChat.lstPhotos">
+    <img mat-card-image src="{{photos.cheminPhoto}}">
+  </ng-container>
+
+<mat-card-content>{{ leChat.descriptif }}</mat-card-content>
+</mat-card>
