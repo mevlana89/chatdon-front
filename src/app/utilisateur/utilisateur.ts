@@ -1,3 +1,5 @@
+import { adresse } from "./adresse";
+
 export abstract class utilisateur {
 
     id: number = 0;
@@ -7,4 +9,5 @@ export abstract class utilisateur {
     telephone: string = "";
     motDePasse1: string = "";
     motDePasse2: string = "";
+    adresseDTO: adresse | undefined ;
   }
