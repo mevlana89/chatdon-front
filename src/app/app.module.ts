@@ -13,12 +13,14 @@ import { ChatModule } from './chat/chat.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { UtilisateurModule } from './utilisateur/utilisateur.module';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AccueilComponent,
     NavBarComponent,
     FooterComponent
   ],
