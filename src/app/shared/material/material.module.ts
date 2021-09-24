@@ -4,9 +4,12 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
+
 
 @NgModule({
   declarations: [],
@@ -16,14 +19,19 @@ import {MatRadioModule} from '@angular/material/radio';
     MatCardModule,
     MatCheckboxModule,
     MatGridListModule,
+    MatToolbarModule,
+    MatButtonModule,
     MatInputModule,
     MatSelectModule,
     MatRadioModule
+
   ], exports:[
     MatSliderModule,
     MatCardModule,
     MatCheckboxModule,
     MatGridListModule,
+    MatToolbarModule,
+    MatButtonModule,
     MatInputModule,
     MatSelectModule,
     MatRadioModule

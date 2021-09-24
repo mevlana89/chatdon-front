@@ -1,0 +1,8 @@
+.header{
+  flex: auto 1 1;
+}
+.title{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
