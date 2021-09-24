@@ -8,7 +8,7 @@ import { MaterialModule } from './material/material.module';
   declarations: [],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
   ], exports:[
     MaterialModule
   ]

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreateChatComponent } from './chat/create-chat/create-chat.component';
 import { FicheChatComponent } from './chat/fiche-chat/fiche-chat.component';
 
 const routes: Routes = [
@@ -10,6 +11,10 @@ const routes: Routes = [
   {
     path: 'fichechat',
     component: FicheChatComponent,
+  },
+  {
+    path: 'createchat',
+    component: CreateChatComponent,
   },
 
   {
