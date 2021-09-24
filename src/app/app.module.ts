@@ -12,13 +12,15 @@ import { SharedModule } from './shared/shared.module';
 import { ChatModule } from './chat/chat.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
+import { UtilisateurModule } from './utilisateur/utilisateur.module';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    FooterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { FooterComponent } from './footer/footer.component';
     BrowserAnimationsModule,
     HttpClientModule,
     SharedModule,
-    ChatModule
+    ChatModule,
+    UtilisateurModule
   ],
   providers: [],
   bootstrap: [AppComponent]
