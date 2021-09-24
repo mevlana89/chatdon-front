@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccueilComponent } from './accueil/accueil.component';
 import { FicheChatComponent } from './chat/fiche-chat/fiche-chat.component';
 import { CandidatComponent } from './utilisateur/candidat/candidat.component';
-import { UtilisateurModule } from './utilisateur/utilisateur.module';
 
 const routes: Routes = [
   {
@@ -16,6 +16,14 @@ const routes: Routes = [
   {
     path: 'candidat',
     component: CandidatComponent,
+  },
+  {
+    path: 'accueil',
+    component: AccueilComponent,
+  },
+  {
+    path: '',
+    component: AccueilComponent,
   },
 
   {
