@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { Chat } from './Chat';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,12 @@ export class ChatService {
   constructor(private http: HttpClient) { }
 
   getChatById(id: number): Observable<any>{
-    return this.http.get<any>(`${this.baseUrl}` + "/getChatByID/" + `${id}`, this.optionRequete);
+    return this.http.get<Chat>(`${this.baseUrl}` + "/getChatByID/" + `${id}`, this.optionRequete);
   }
 
+  createChat(chat: Chat): Observable<any>{
+    console.log("create chat serviceChat")
+    return this.http.post(`${this.baseUrl}` + "/createChat", chat, this.optionRequete);
+  }
 }
 

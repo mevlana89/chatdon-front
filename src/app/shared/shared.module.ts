@@ -14,13 +14,14 @@ import { ChatLightComponent } from './liste-chat-light/chat-light/chat-light.com
     CommonModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ], exports:[
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     ListeChatLightComponent,
-    ChatLightComponent
+    ChatLightComponent,
+    ReactiveFormsModule,
   ]
 })
 export class SharedModule { }

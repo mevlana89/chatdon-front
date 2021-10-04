@@ -1,14 +1,10 @@
-<h1>{{ leChat.nom }}</h1>
-<div>
-  todo : carroussel
-  <img mat-card-image src="{{leChat.lstPhotos[0].cheminPhoto}}" >
-
-
-
-  <mat-slider min="1" max="100" step="1" value="50"></mat-slider>
-</div>
+<h1><img src="assets/icone_chat.png" height=18> {{ leChat.nom }}</h1>
+  <div class="center-div" *ngIf="leChat.lstPhotos[0]"><p align="center"><img src="{{ leChat.lstPhotos[0].cheminPhoto }}" height="200"></p></div>
+  <div class="center-div"><p align="center"><mat-slider min="1" max="100" step="1" value="50"></mat-slider></p></div>
+  <div class="center-div"><p align="center">todo : carroussel</p></div>
 <mat-card>
-  <mat-card-title>Fiche de {{ leChat.nom }}</mat-card-title>
+  <img mat-card-avatar>
+  <mat-card-title><mat-icon>assignment</mat-icon> Fiche de {{ leChat.nom }}</mat-card-title>
   <mat-grid-list cols="2" rowHeight="30px">
     <mat-grid-tile>
       <mat-card-content>Catégorie d age : {{ leChat.categorieAge }}</mat-card-content>
@@ -33,11 +29,12 @@
     </mat-grid-tile>
   </mat-grid-list>
 </mat-card>
-  <mat-card>
-    <mat-card-title>Sociabilité</mat-card-title>
-    <mat-grid-list cols="2" rowHeight="30px">
+<br>
+<mat-card>
+  <mat-card-title><mat-icon>people</mat-icon> Sociabilité</mat-card-title>
+  <mat-grid-list cols="3" rowHeight="30px">
     <mat-grid-tile>
-        <div><mat-checkbox [checked]=leChat.sociableEnfant >Adapté aux enfants </mat-checkbox></div>
+        <div><mat-checkbox [checked]=leChat.sociableEnfant ><mat-icon>child_care</mat-icon> Adapté aux enfants </mat-checkbox></div>
       </mat-grid-tile>
       <mat-grid-tile>
         <div><mat-checkbox [checked]=leChat.sociableChien >Accepte les chiens </mat-checkbox></div>
@@ -45,14 +42,16 @@
       <mat-grid-tile>
         <div><mat-checkbox [checked]=leChat.sociableChat >Accepte les autres chats </mat-checkbox></div>
     </mat-grid-tile>
-</mat-grid-list>
-
+  </mat-grid-list>
 </mat-card>
-
+<br>
 <mat-card>
-  <ng-container *ngFor="let photos of leChat.lstPhotos">
-    <img mat-card-image src="{{photos.cheminPhoto}}">
-  </ng-container>
-
-<mat-card-content>{{ leChat.descriptif }}</mat-card-content>
+  <mat-card-title><mat-icon>event_note</mat-icon> Présentation</mat-card-title>
+  <mat-grid-list cols="4" rowHeight="150px">
+    <mat-grid-tile  *ngFor="let photos of leChat.lstPhotos">
+      <img mat-card-image src="{{photos.cheminPhoto}}" height="145" >
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-card-content>{{ leChat.descriptif }}</mat-card-content>
 </mat-card>
+<br>
