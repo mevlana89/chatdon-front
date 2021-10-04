@@ -14,7 +14,11 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>Voir le chat</button>
+      <!-- A voir pour le routerLINK   --- <a [routerLink]="['/fichechat/1']"> -->
+      <a href="/fichechat/{{chat.id}}">
+        <button mat-button>Voir le chat</button>
+      </a>
+      
       <!-- <button mat-button>SHARE</button> -->
     </mat-card-actions>
   </mat-card>
