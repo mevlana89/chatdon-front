@@ -2,14 +2,6 @@
 
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-.center-div {
-  margin: 0 auto;
-  width: 80%;
-}
-
-mat-card {
-  margin: 5;
-}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

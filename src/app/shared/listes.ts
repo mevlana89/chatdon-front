@@ -1,21 +1,52 @@
 
-module Listes {
+  export const DONATEUR: string = "Donateur";
 
-  export enum Tailles {
+  export const CANDIDAT: string = "Candidat";
+
+  export const CATEGORIES_AGE: string[] = [
+    'chaton', 'jeune', 'adulte', 'senior'
+  ]
+  export const TAILLES: string[] = [
     'petit', 'moyen', 'grand'
-  }
+  ]
 
-  // string[] = ['petit', 'moyen', 'grand'];
-  // export function getTailles() {
-  //   return tailles;
-  // }
-
-  export enum Sexes {
+  export const SEXES: string[] = [
     'male',
     'femelle'
-  }
+  ]
 
-  export enum Races {
+  export const PELAGES: string[] = [
+    'sans',
+    'court',
+    'mi-long',
+    'angora'
+  ]
+
+  export const CARACTERES: string[] = [
+    'calme',
+    'joueur',
+    'solitaire',
+    'affectueux',
+    'bagarreur'
+  ]
+
+  export const REGIONS: string[] = [
+    'Auvergne-Rhône-Alpes',
+    'Bourgogne-Franche-Comté',
+    'Bretagne',
+    'Centre-Val de Loire',
+    'Corse',
+    'Grand Est',
+    'Hauts-de-France',
+    'Ile-de-France',
+    'Normandie',
+    'Nouvelle-Aquitaine',
+    'Occitanie',
+    'Pays de la Loire',
+    'Provence-Alpes-Côte d’Azur'
+  ]
+
+  export const RACES: string[] = [
     'Abyssin',
     'American curl',
     'American shorthair',
@@ -47,7 +78,7 @@ module Listes {
     'Cymric',
     'Devon rex',
     'Donskoy',
-    'European shorthair',
+    'Européen',
     'Exotic shorthair',
     'German rex',
     'Havana brown',
@@ -95,7 +126,7 @@ module Listes {
     'Turc de Van',
     'Ural rex',
     'York chocolat'
-  }
+  ]
 
 
-}
+

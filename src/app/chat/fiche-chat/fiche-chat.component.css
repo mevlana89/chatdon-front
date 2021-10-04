@@ -1,0 +1,13 @@
+
+.center-div {
+  margin: 0 auto;
+  width: 80%;
+}
+
+mat-card {
+  margin: 5;
+}
+
+body {
+  margin: 5;
+}

@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Chat } from '../Chat';
 import { ChatService } from '../chat.service';
-
-
-enum Sexes {
-  'male',
-  'femelle'
-}
+import { TAILLES, SEXES, RACES, CATEGORIES_AGE, PELAGES, CARACTERES, REGIONS } from '../../shared/listes';
+import { PhotoChat } from '../PhotoChat';
 
 @Component({
   selector: 'app-create-chat',
@@ -16,11 +12,21 @@ enum Sexes {
 export class CreateChatComponent implements OnInit {
 
   leChat: Chat = new Chat();
+  addPhoto: string = "";
 
+  public Tailles = TAILLES;
 
+  public Sexes = SEXES;
 
-  sexes = Sexes;
+  public Races = RACES;
 
+  public Cat_Age = CATEGORIES_AGE;
+
+  public Pelages = PELAGES;
+
+  public Caracteres = CARACTERES;
+
+  public Regions = REGIONS;
 
   constructor(private serviceChat: ChatService) { }
 
@@ -28,7 +34,7 @@ export class CreateChatComponent implements OnInit {
 
   }
 
-  test() {
+  createChat() {
     console.log("debut test create");
     this.serviceChat.createChat(this.leChat).subscribe(
     rsp => {
@@ -38,9 +44,19 @@ export class CreateChatComponent implements OnInit {
       console.log(" createChat error!");
       console.log(error);
     });
+  }
 
+  addUrlPhoto() {
+    console.log("addUrlPhoto : " + this.addPhoto);
+    const laPhoto = new PhotoChat();
+    laPhoto.cheminPhoto = this.addPhoto;
+    this.leChat.lstPhotos.push(laPhoto);
+    this.addPhoto = "";
+  }
 
-
-
+  removeUrlPhoto(photo: PhotoChat) {
+    this.leChat.lstPhotos.forEach((value,index) => {
+      if (value==photo) this.leChat.lstPhotos.splice(index, 1);
+    });
   }
 }

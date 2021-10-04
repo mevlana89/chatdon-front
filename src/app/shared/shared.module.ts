@@ -11,11 +11,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ], exports:[
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class SharedModule { }

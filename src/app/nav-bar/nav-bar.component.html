@@ -4,6 +4,17 @@
     <img src="#"></div>
 
 <div class="header"></div>
-<a mat-raised-button color="warn">Se connecter</a>
-<a mat-button >Créer un compte</a>
-  </mat-toolbar>
+<div *ngIf="isVisiteur">
+  <a mat-raised-button color="warn" (click)="showLogin()">Se connecter</a>
+  <a mat-button >Créer un compte</a>
+  <div *ngIf="whileLogin">
+    <input [(ngModel)]="nom" >
+    <input type="password" [(ngModel)]="pass" >
+    <button mat-raised-button (click)="login()">Valider</button>
+  </div>
+</div>
+<div *ngIf="!isVisiteur">
+  <button mat-raised-button (click)="logout()">Se déconnecter</button>
+</div>
+
+</mat-toolbar>

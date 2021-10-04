@@ -1,32 +1,91 @@
-<h1><img src="assets/icone_chat.png" height=18> {{ leChat.nom }}</h1>
-  <div class="center-div" *ngIf="leChat.lstPhotos[0]"><p align="center"><img src="{{ leChat.lstPhotos[0].cheminPhoto }}" height="200"></p></div>
-  <div class="center-div"><p align="center"><mat-slider min="1" max="100" step="1" value="50"></mat-slider></p></div>
-  <div class="center-div"><p align="center">todo : carroussel</p></div>
+<h1>Enregistrer un chat : </h1>
 <mat-card>
-  <img mat-card-avatar>
-  <mat-card-title><mat-icon>assignment</mat-icon> Fiche de {{ leChat.nom }}</mat-card-title>
-  <mat-grid-list cols="2" rowHeight="30px">
+  <mat-card-title><mat-icon>assignment</mat-icon> Fiche </mat-card-title>
+  <mat-grid-list cols="2" rowHeight="60px">
     <mat-grid-tile>
-      <mat-card-content>Catégorie d age : {{ leChat.categorieAge }}</mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Nom : </mat-label>
+        <input matInput placeholder="Saisissez le nom du chat" [value]="leChat.nom">
+      </mat-form-field>
     </mat-grid-tile>
+
     <mat-grid-tile>
-      <mat-card-content>Race : {{ leChat.race }}</mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Race : </mat-label>
+        <mat-select>
+          <mat-option *ngFor="let race of Races" [value]="leChat.race">
+          {{ race }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-grid-tile>
+
     <mat-grid-tile>
-      <mat-card-content>Sexe : {{ leChat.sexe}}</mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Taille : </mat-label>
+        <mat-select>
+          <mat-option *ngFor="let taille of Tailles" [value]="leChat.taille">
+          {{ taille }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-grid-tile>
+
     <mat-grid-tile>
-      <mat-card-content>Taille : {{ leChat.taille }}</mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Catégorie d age : </mat-label>
+        <mat-select>
+          <mat-option *ngFor="let cat of Cat_Age" [value]="leChat.categorieAge">
+          {{ cat }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-grid-tile>
+
     <mat-grid-tile>
-      <mat-card-content>Pelage : {{ leChat.pelage }}</mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Sexe : </mat-label>
+        <mat-select>
+          <mat-option *ngFor="let sex of Sexes" [value]="leChat.sexe">
+          {{ sex }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-grid-tile>
+
     <mat-grid-tile>
-      <mat-card-content>Caractère : {{ leChat.caractere }}</mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Pelage : </mat-label>
+        <mat-select>
+          <mat-option *ngFor="let pel of Pelages" [value]="leChat.pelage">
+          {{ pel }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-grid-tile>
+
     <mat-grid-tile>
-      <mat-card-content>Zone géographique : {{ leChat.zoneGeo }}</mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Caractère dominant : </mat-label>
+        <mat-select>
+          <mat-option *ngFor="let carac of Caracteres" [value]="leChat.caractere">
+          {{ carac }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field appearance="fill">
+        <mat-label>Région : </mat-label>
+        <mat-select>
+          <mat-option *ngFor="let region of Regions" [value]="leChat.zoneGeo">
+          {{ region }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
   </mat-grid-list>
 </mat-card>
 <br>
@@ -47,12 +106,28 @@
 <br>
 <mat-card>
   <mat-card-title><mat-icon>event_note</mat-icon> Présentation</mat-card-title>
-  <mat-grid-list cols="4" rowHeight="150px">
-    <mat-grid-tile  *ngFor="let photos of leChat.lstPhotos">
-      <img mat-card-image src="{{photos.cheminPhoto}}" height="145" >
-    </mat-grid-tile>
-  </mat-grid-list>
+  <mat-form-field appearance="fill">
+    <mat-label>Décrivez votre chat en quelques lignes</mat-label>
+    <textarea matInput [value]=leChat.descriptif cdkTextareaAutosize
+      cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Ex. Mon chat est...">
+    </textarea>
+  </mat-form-field>
   <mat-card-content>{{ leChat.descriptif }}</mat-card-content>
 </mat-card>
 <br>
-<button (click)="test()">Test create</button>
+<mat-card>
+  <mat-card-title><mat-icon>photo</mat-icon>Liens vers photos</mat-card-title>
+  <mat-form-field appearance="fill">
+    <mat-label>Url : </mat-label>
+    <input matInput placeholder="Saisissez l'url vers la photo" [(ngModel)]="addPhoto">
+  </mat-form-field>
+  <button mat-raised-button (click)="addUrlPhoto()" >Ajouter</button>
+  <br>
+  <span *ngFor="let photo of leChat.lstPhotos">
+  <!--   <button md-fab class="image"
+      [style.backgroundImage]="'url(' + photo.cheminPhoto + ')'" (click)="removeUrlPhoto(photo)"></button> -->
+     <img src="{{ photo.cheminPhoto }}" (click)="removeUrlPhoto(photo)" height="100" title="Clic pour retirer l'url" alt="Photo ajoutée">
+  </span>
+</mat-card>
+<button mat-raised-button (click)="createChat()" class="btn-valid">Enregistrer la fiche</button>
+<br>
