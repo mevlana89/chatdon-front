@@ -4,6 +4,8 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListeChatLightComponent } from './liste-chat-light/liste-chat-light.component';
 import { ChatLightComponent } from './liste-chat-light/chat-light/chat-light.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,7 @@ import { ChatLightComponent } from './liste-chat-light/chat-light/chat-light.com
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule
   ], exports:[
     MaterialModule,
     FormsModule,
@@ -22,6 +25,7 @@ import { ChatLightComponent } from './liste-chat-light/chat-light/chat-light.com
     ListeChatLightComponent,
     ChatLightComponent,
     ReactiveFormsModule,
+    AppRoutingModule
   ]
 })
 export class SharedModule { }
