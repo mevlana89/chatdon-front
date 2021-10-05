@@ -1,5 +1,6 @@
 import { utilisateur } from "./utilisateur";
+import { Chat } from "../chat/Chat";
 
-export class donateur extends utilisateur {
-
+export class Donateur extends utilisateur {
+  chatsProposes : Chat[] = [];
 }
