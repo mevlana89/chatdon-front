@@ -1,3 +1,4 @@
+import { Donateur } from "../utilisateur/donateur";
 import { PhotoChat } from "./PhotoChat";
 
 export class Chat {
@@ -17,4 +18,6 @@ export class Chat {
   sociableChien: boolean = false;
   // TODO : candidatures: Candidature[];
   lstPhotos: PhotoChat[] = [];
+  donateur: Donateur | undefined;
+
 }

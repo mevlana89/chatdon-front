@@ -1,6 +1,6 @@
 import { utilisateur } from "./utilisateur";
 
-export class candidat extends utilisateur {
+export class Candidat extends utilisateur {
 
     typeHebergement: string = "";
     surfaceHebergement: number = 0;

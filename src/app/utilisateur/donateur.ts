@@ -1,5 +1,5 @@
 import { utilisateur } from "./utilisateur";
 
-export class donateur extends utilisateur {
+export class Donateur extends utilisateur {
 
 }

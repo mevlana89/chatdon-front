@@ -35,7 +35,7 @@ export class CreateChatComponent implements OnInit {
   }
 
   createChat() {
-    console.log("debut test create");
+    console.log("debut create");
     this.serviceChat.createChat(this.leChat).subscribe(
     rsp => {
       console.log(" createChat : " + rsp);

@@ -27,5 +27,14 @@ export class ChatService {
     console.log("create chat serviceChat")
     return this.http.post(`${this.baseUrl}` + "/createChat", chat, this.optionRequete);
   }
+
+  updateChat(chat: Chat): Observable<any>{
+    console.log("update chat serviceChat")
+    return this.http.post(`${this.baseUrl}` + "/updateChat", chat, this.optionRequete);
+  }
+
+
+
+
 }
 
