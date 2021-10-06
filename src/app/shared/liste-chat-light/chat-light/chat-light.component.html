@@ -1,5 +1,33 @@
-<p>chat-light works!</p>
+<!-- <p>chat-light works!</p> -->
+  <div *ngFor="let chat of chats" class="catLight" >
+  <mat-card class="example-card" class="zoom">
+    <mat-card-header class="short-text">
+        <!-- image avatar -->
+      <div mat-card-avatar class="example-header-image zoom"></div>
+      <mat-card-title>{{chat.nom}}</mat-card-title>
+      <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+    </mat-card-header>
+    <img *ngIf="chat.lstPhotos[0] != null; else chatSansPhoto" mat-card-image [src]="chat.lstPhotos[0].cheminPhoto" alt="Photo of a cat">
+    <mat-card-content class="div-text">
+      <p>
+        {{chat.descriptif}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- A voir pour le routerLINK   --- <a [routerLink]="['/fichechat/1']"> -->
+        <a [routerLink]="['/fichechat/', chat.id]">
+      <!-- <a href="/fichechat/{{chat.id}}"> -->
+        <button mat-button>Voir le chat</button>
+      </a>
+      
+      <!-- <button mat-button>SHARE</button> -->
+    </mat-card-actions>
+  </mat-card>
+</div>
 
+<ng-template #chatSansPhoto><img mat-card-image src="https://tabatadreams.files.wordpress.com/2016/01/avatar-chat.jpg" alt="Photo of a cat"></ng-template>
+
+<!-- 
 <div *ngFor="let chat of chats" >
     <mat-card>
         <mat-grid-list cols="10" rowHeight="1:1">
@@ -20,4 +48,4 @@
   <mat-grid-list cols="2" rowHeight="100px">
     <mat-grid-tile rowspan=1 colspan=1 >1</mat-grid-tile>
     <mat-grid-tile rowspan=1 colspan=2 >2</mat-grid-tile>
-  </mat-grid-list>
+  </mat-grid-list> -->
