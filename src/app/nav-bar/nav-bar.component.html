@@ -8,12 +8,21 @@
   <a mat-raised-button color="warn" (click)="showLogin()">Se connecter</a>
   <a mat-button >Créer un compte</a>
   <div *ngIf="whileLogin">
-    <input [(ngModel)]="nom" >
+    <input [(ngModel)]="mail" >
     <input type="password" [(ngModel)]="pass" >
     <button mat-raised-button (click)="login()">Valider</button>
   </div>
+  <div *ngIf="wrongLogin">
+    Mauvais compte ou mot de passe !
+  </div>
 </div>
 <div *ngIf="!isVisiteur">
+  <div *ngIf="isCandidat">
+    Hello {{ profilCandidat?.prenom }}
+  </div>
+  <div *ngIf="isDonateur">
+    Hello {{ profilDonateur?.prenom }}
+  </div>
   <button mat-raised-button (click)="logout()">Se déconnecter</button>
 </div>
 
