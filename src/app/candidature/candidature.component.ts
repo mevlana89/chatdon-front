@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Candidature } from './candidature.model';
+import { CandidatureService } from './candidature.service';
+
 
 @Component({
   selector: 'app-candidature',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CandidatureComponent implements OnInit {
 
-  constructor() { }
+  constructor(private candidatureService: CandidatureService) { }
+  candidatures: Candidature[] | undefined;
+
 
   ngOnInit(): void {
+    this.candidatureService.getAllCandidaturesByCandidatId(Number(localStorage.getItem("id")))
+      .subscribe((candidatures: Candidature[]) => this.candidatures = candidatures)
   }
 
 }

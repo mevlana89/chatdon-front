@@ -15,7 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 import { UtilisateurModule } from './utilisateur/utilisateur.module';
 import { AccueilComponent } from './accueil/accueil.component';
 import { CandidatureComponent } from './candidature/candidature.component';
-import { SingleCandidatureComponent } from './candidature/single-candidature/single-candidature.component';
+
 
 
 
@@ -25,8 +25,7 @@ import { SingleCandidatureComponent } from './candidature/single-candidature/sin
     AccueilComponent,
     NavBarComponent,
     FooterComponent,
-    CandidatureComponent,
-    SingleCandidatureComponent
+    CandidatureComponent
   ],
   imports: [
     BrowserModule,
