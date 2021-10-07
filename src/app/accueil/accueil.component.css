@@ -1,0 +1,27 @@
+.mat-icon{
+    height:50px !important;
+    width:50px !important;
+    font-size:50px !important;
+}
+
+.divSearch{
+
+    padding: 10px;
+}
+.center
+{
+    text-align: center;
+}
+
+  mat-form-field {
+    width: 90%;
+  }
+
+  mat-grid-list {
+    margin: 10px;
+  }
+  mat-form-field 
+  {
+            
+    width: 80%;
+  }

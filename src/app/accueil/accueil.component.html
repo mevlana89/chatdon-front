@@ -4,4 +4,163 @@
     <P>Bienvenu sur le site "Chat'don", vous pouvez créer un compte donneur ou candidat …..</P>
 </div>
 
-<app-liste-chat-light></app-liste-chat-light>
+
+<div class="divSearch">
+<div>
+  <button (click)="searchDisplay()" mat-icon-button color="primary">
+    <mat-icon>search</mat-icon>
+  </button>
+</div>
+
+<div *ngIf="displaySearch">
+  <form (ngSubmit)="orderForm.valid && rechercheChats()" [formGroup]="orderForm" #myForm="ngForm">
+
+  <!--  Formulaire sans MATERIAL 
+    <div>
+      Form submitted ? {{myForm.submitted}}
+      Form valid ? {{orderForm.valid}}
+      Form invalid ? {{orderForm.valid}}
+    </div>
+    <div>
+      <label for="categorieAge-filter">categorieAge</label>
+      <input name="categorieAge-filter" type="text" formControlName="categorieAge">
+    </div>
+    <div>
+      <label for="race-filter">race</label>
+      <input name="race-filter" type="text" formControlName="race">
+    </div>
+    <div>
+      <label for="sexe-filter">sexe</label>
+      <input name="sexe-filter" type="text" formControlName="sexe">
+    </div> 
+
+  </select>
+  -->
+
+  <mat-grid-list cols="2" rowHeight="60px">
+
+    <mat-grid-tile>
+      <mat-form-field appearance="fill">
+        <mat-label>Catégorie d age : </mat-label>
+        <mat-select formControlName="categorieAge">
+          <mat-option value="" ></mat-option>
+          <mat-option *ngFor="let cat of Cat_Age" [value]="cat">
+          {{ cat }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field appearance="fill">
+        <mat-label>Pelage : </mat-label>
+        <mat-select formControlName="pelage">
+          <mat-option value="" ></mat-option>
+          <mat-option *ngFor="let pel of Pelages" [value]="pel">
+          {{ pel }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field appearance="fill">
+        <mat-label>Race : </mat-label>
+        <mat-select formControlName="race">
+          <mat-option value="" ></mat-option>
+          <mat-option *ngFor="let race of Races" [value]="race">
+          {{ race }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field appearance="fill">
+        <mat-label>Caractère dominant : </mat-label>
+        <mat-select formControlName="caractere">
+          <mat-option value="" ></mat-option>
+          <mat-option *ngFor="let carac of Caracteres" [value]="carac">
+          {{ carac }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field appearance="fill">
+        <mat-label>Sexe : </mat-label>
+        <mat-select formControlName="sexe"> 
+          <mat-option value="" ></mat-option>
+          <mat-option *ngFor="let sex of Sexes" [value]="sex">
+          {{ sex }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field appearance="fill">
+        <mat-label>Taille : </mat-label>
+        <mat-select formControlName="taille"> 
+          <mat-option value="" ></mat-option>
+          <mat-option *ngFor="let taille of Tailles" [value]="taille">
+          {{ taille }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field appearance="fill">
+        <mat-label>Region : </mat-label>
+        <mat-select formControlName="zoneGeo"> 
+          <mat-option value="" ></mat-option>
+          <mat-option *ngFor="let region of Regions" [value]="region">
+          {{ region }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field appearance="fill">
+        <mat-label>Adapté aux enfants : </mat-label>
+        <mat-select formControlName="sociableEnfant"> 
+          <mat-option value=""></mat-option>
+          <mat-option value="1">Oui</mat-option>
+          <mat-option value="0">Non</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field appearance="fill">
+        <mat-label>Accepte les chiens : </mat-label>
+        <mat-select formControlName="sociableChien"> 
+          <mat-option value=""></mat-option>
+          <mat-option value="1">Oui</mat-option>
+          <mat-option value="0">Non</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    
+    <mat-grid-tile>
+      <mat-form-field appearance="fill">
+        <mat-label>Accepte les autres chats : </mat-label>
+        <mat-select formControlName="sociableChat"> 
+          <mat-option value=""></mat-option>
+          <mat-option value="1">Oui</mat-option>
+          <mat-option value="0">Non</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+  <div  class="center">
+    <button mat-stroked-button color="primary" type="submit">Lancer la recherche</button>
+  </div> 
+  </form>
+</div>
+</div>
+<app-liste-chat-light [filterDto]="filterDto" ></app-liste-chat-light>
