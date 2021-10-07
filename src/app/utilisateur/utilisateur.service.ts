@@ -14,23 +14,33 @@ export class UtilisateurService {
 
   requeteOption:HttpHeaders = new HttpHeaders().set('Access-Control-Allow-Origin','*');
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+   // this.requeteOption = new HttpHeaders().set('Access-Control-Allow-Origin','*');
+  }
 
   createDonateur(donateur: Donateur): Observable<Donateur>{
     let endPoint: string="/donateurs";
     return this.http.post<Donateur>(this.BackUrl + endPoint, donateur, { headers: this.requeteOption } );
   }
 
-  getDonateurByMail(mail: string): Observable<Donateur> {
+  getDonateurByMail(mail: string, pass: string): Observable<Donateur> {
     let endPoint: string="/getDonateurbyMail";
-    let requeteParams = new HttpParams().set('mail', mail)
-    return this.http.post<Donateur>(this.BackUrl + endPoint, { headers: this.requeteOption, params: requeteParams });
+    let requeteParams = new HttpParams().set('mail', mail).set("pass", pass);
+    return this.http.get<Donateur>(this.BackUrl + endPoint, {
+      headers: this.requeteOption,
+      params: requeteParams,
+      responseType: 'json'
+    });
   }
 
-  getCandidatByMail(mail: string): Observable<Candidat> {
+  getCandidatByMail(mail: string, pass: string): Observable<Candidat> {
     let endPoint: string="/candidats/getCandidatbyMail";
-    let requeteParams = new HttpParams().set('mail', mail)
-    return this.http.post<Candidat>(this.BackUrl + endPoint, { headers: this.requeteOption, params: requeteParams });
+    let requeteParams = new HttpParams().set('mail', mail).set("pass", pass);
+    return this.http.get<Candidat>(this.BackUrl + endPoint, {
+      headers: this.requeteOption,
+      params: requeteParams,
+      responseType: 'json'
+    });
   }
 
   getProfilUtilisateur(mail: string, pass: string): Observable<string> {

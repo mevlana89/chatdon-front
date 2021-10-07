@@ -38,16 +38,18 @@ export class NavBarComponent implements OnInit {
 
   showLogin() {
     this.whileLogin = true;
+    this.wrongLogin = false;
   }
 
   login() {
     this.whileLogin = false;
     this.wrongLogin = false;
+    console.log("start login")
     this.utilisateurService.getProfilUtilisateur(this.mail, this.pass).subscribe(
       data => {
         console.log("retour getProfilUtilisateur : " + data);
         if (data == DONATEUR) {
-          this.utilisateurService.getDonateurByMail(this.mail).subscribe(
+          this.utilisateurService.getDonateurByMail(this.mail, this.pass).subscribe(
             dataD => {
               this.profilDonateur = dataD;
               console.log("set localStorage : " + DONATEUR)
@@ -57,7 +59,7 @@ export class NavBarComponent implements OnInit {
               this.updateRole();
             });
         } else if (data == CANDIDAT) {
-          this.utilisateurService.getCandidatByMail(this.mail).subscribe(
+          this.utilisateurService.getCandidatByMail(this.mail, this.pass).subscribe(
             dataC => {
               this.profilCandidat = dataC;
               console.log("set localStorage : " + CANDIDAT)
@@ -67,7 +69,7 @@ export class NavBarComponent implements OnInit {
               this.updateRole();
             });
         } else {
-          if (data == "wrongPass") {
+          if (data == "WrongPass") {
             this.wrongLogin = true;
           }
           localStorage.setItem(CANDIDAT, "");
