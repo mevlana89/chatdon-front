@@ -1,8 +1,16 @@
 .header{
   flex: auto 1 1;
 }
+a {
+  text-decoration: none;
+  color: white;
+}
 .title{
     display: block;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
+}
+button {
+  margin-left: 3px;
+  margin-right: 3px;
 }

@@ -112,7 +112,6 @@
       cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Ex. Mon chat est...">
     </textarea>
   </mat-form-field>
- <!-- <mat-card-content>{{ leChat.descriptif }}</mat-card-content> -->
 </mat-card>
 <br>
 <mat-card>
@@ -124,8 +123,6 @@
   <button mat-raised-button (click)="addUrlPhoto()" >Ajouter</button>
   <br>
   <span *ngFor="let photo of leChat.lstPhotos">
-  <!--   <button md-fab class="image"
-      [style.backgroundImage]="'url(' + photo.cheminPhoto + ')'" (click)="removeUrlPhoto(photo)"></button> -->
      <img src="{{ photo.cheminPhoto }}" (click)="removeUrlPhoto(photo)" height="100" title="Clic pour retirer l'url" alt="Photo ajoutée">
   </span>
 </mat-card>

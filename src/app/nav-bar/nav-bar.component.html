@@ -1,31 +1,33 @@
-<mat-toolbar color="primary">
-  <div class="title">Chat'Don
-      <br>
-      <img src="#">
-  </div>
-  <div class="header"></div>
-  <div *ngIf="isVisiteur">
-    <a mat-raised-button color="warn" (click)="showLogin()">Se connecter</a>
-    <a mat-button >Créer un compte</a>
-    <div *ngIf="whileLogin">
-      <input [(ngModel)]="mail" >
-      <input type="password" [(ngModel)]="pass" >
-      <button mat-raised-button (click)="login()">Valider</button>
-    </div>
-    <div *ngIf="wrongLogin">
-      Mauvais compte ou mot de passe !
-    </div>
-  </div>
-  <div *ngIf="!isVisiteur">
-    <div *ngIf="isCandidat">
-      Hello {{ profilCandidat?.prenom }}
-    </div>
-    <div *ngIf="isDonateur">
-      <div>
-        <a routerLink='/createchat'> <button mat-raised-button color="warn" >Proposer un chat</button></a>
-      </div>
-      Hello {{ profilDonateur?.prenom }}
-    </div>
-    <button mat-raised-button (click)="logout()">Se déconnecter</button>
-  </div>
-</mat-toolbar>
+<div class="header">
+  <mat-toolbar color="primary">
+    <!-- <mat-toolbar-row> -->
+      <span class="title"><a routerLink='/'>Chat'Don</a></span>
+    <!-- </mat-toolbar-row>
+    <mat-toolbar-row> -->
+      <span *ngIf="isVisiteur">
+        <a mat-raised-button color="warn" (click)="showLogin()">Se connecter</a>
+        <a mat-button >Créer un compte</a>
+        <div *ngIf="whileLogin">
+          <input [(ngModel)]="mail" >
+          <input type="password" [(ngModel)]="pass" >
+          <button mat-raised-button (click)="login()">Valider</button>
+        </div>
+        <div *ngIf="wrongLogin">
+          Mauvais compte ou mot de passe !
+        </div>
+      </span>
+      <span *ngIf="!isVisiteur">
+        <span *ngIf="isCandidat">
+          Hello {{ profilCandidat?.prenom }}
+        </span>
+        <span *ngIf="isDonateur">
+          Hello {{ profilDonateur?.prenom }}
+          <span>
+            <a routerLink='/createchat'><button mat-raised-button color="warn" >Proposer un chat</button></a>
+          </span>
+        </span>
+        <button mat-raised-button (click)="logout()">Se déconnecter</button>
+      </span>
+    <!-- </mat-toolbar-row> -->
+  </mat-toolbar>
+</div>

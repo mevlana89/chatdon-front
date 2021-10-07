@@ -19,18 +19,18 @@ export class ChatService {
 
   constructor(private http: HttpClient) { }
 
-  getChatById(id: number): Observable<any>{
+  getChatById(id: number): Observable<Chat>{
     return this.http.get<Chat>(`${this.baseUrl}` + "/getChatByID/" + `${id}`, this.optionRequete);
   }
 
-  createChat(chat: Chat): Observable<any>{
+  createChat(chat: Chat): Observable<Chat>{
     console.log("create chat serviceChat")
-    return this.http.post(`${this.baseUrl}` + "/createChat", chat, this.optionRequete);
+    return this.http.post<Chat>(`${this.baseUrl}` + "/createChat", chat, this.optionRequete);
   }
 
-  updateChat(chat: Chat): Observable<any>{
+  updateChat(chat: Chat): Observable<Chat>{
     console.log("update chat serviceChat")
-    return this.http.post(`${this.baseUrl}` + "/updateChat", chat, this.optionRequete);
+    return this.http.post<Chat>(`${this.baseUrl}` + "/updateChat", chat, this.optionRequete);
   }
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DONATEUR, CANDIDAT } from '../shared/listes';
 import { Candidat } from '../utilisateur/candidat';
 import { Donateur } from '../utilisateur/donateur';
@@ -11,7 +12,7 @@ import { UtilisateurService } from '../utilisateur/utilisateur.service';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor( private utilisateurService: UtilisateurService) { }
+  constructor( private utilisateurService: UtilisateurService, private router: Router) { }
 
   role!: string | null;
 
@@ -70,8 +71,11 @@ export class NavBarComponent implements OnInit {
             });
         } else {
           if (data == "WrongPass") {
-            this.wrongLogin = true;
+            console.log("WrongPass");
+          } else {
+            console.log("No user found!");
           }
+          this.wrongLogin = true;
           localStorage.setItem(CANDIDAT, "");
           localStorage.setItem(DONATEUR, "");
           localStorage.setItem("role", "");
@@ -86,6 +90,7 @@ export class NavBarComponent implements OnInit {
     localStorage.setItem(DONATEUR, "");
     this.whileLogin = false;
     this.updateRole();
+    this.router.navigate(['/']);
   }
 
   updateRole() {
@@ -107,7 +112,6 @@ export class NavBarComponent implements OnInit {
       this.isVisiteur = false;
       this.isDonateur = false;
     }
-    console.log(this.isVisiteur ? "Visiteur" : "Role : " + this.role);
   }
 
 }
