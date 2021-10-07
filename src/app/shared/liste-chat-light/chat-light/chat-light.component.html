@@ -1,6 +1,6 @@
 <!-- <p>chat-light works!</p> -->
-  <div *ngFor="let chat of chats" class="catLight" >
-  <mat-card class="example-card" class="zoom">
+  <!-- <div *ngFor="let chat of chats" class="catLight" > -->
+  <mat-card *ngIf="chat" class="example-card" class="zoom">
     <mat-card-header class="short-text">
         <!-- image avatar -->
       <div mat-card-avatar class="example-header-image zoom"></div>
@@ -23,7 +23,7 @@
       <!-- <button mat-button>SHARE</button> -->
     </mat-card-actions>
   </mat-card>
-</div>
+<!-- </div> -->
 
 <ng-template #chatSansPhoto><img mat-card-image src="https://tabatadreams.files.wordpress.com/2016/01/avatar-chat.jpg" alt="Photo of a cat"></ng-template>
 

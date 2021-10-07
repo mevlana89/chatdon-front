@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ChatLight } from './chat-light';
 
 @Component({
   selector: 'app-chat-light',
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ChatLightComponent implements OnInit {
 
   @Input()
-  chats: any | undefined; 
+  chat: ChatLight | undefined; 
   
   constructor() { }
 

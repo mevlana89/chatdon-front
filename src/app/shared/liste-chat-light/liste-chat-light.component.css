@@ -1,0 +1,8 @@
+.catLight {
+    display: inline-block;
+	/* margin-left: 20px; */
+    margin: 20px;
+    border-color: blue;
+    max-width: 300px;
+    min-width: 300px;
+}
