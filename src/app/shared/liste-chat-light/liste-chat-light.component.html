@@ -1,5 +1,6 @@
 <!-- <p>liste-chat-light works!</p> -->
 
 <!-- {{ this.listeChatLight }} -->
-
-<app-chat-light [chats]="listeChatLight" ></app-chat-light>
+<div *ngFor="let chatLight of listeChatLight" class="catLight" >
+<app-chat-light  [chat]="chatLight" ></app-chat-light>
+</div>

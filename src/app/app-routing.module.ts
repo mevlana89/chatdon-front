@@ -5,6 +5,7 @@ import { CreateChatComponent } from './chat/create-chat/create-chat.component';
 import { EditChatComponent } from './chat/edit-chat/edit-chat.component';
 import { FicheChatComponent } from './chat/fiche-chat/fiche-chat.component';
 import { CandidatComponent } from './utilisateur/candidat/candidat.component';
+import { CandidatureComponent } from './candidature/candidature.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path: 'accueil',
     component: AccueilComponent,
+  },
+
+  {
+    path:'candidatures',
+    component:CandidatureComponent,
   },
   {
     path: '',

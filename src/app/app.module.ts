@@ -14,6 +14,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { UtilisateurModule } from './utilisateur/utilisateur.module';
 import { AccueilComponent } from './accueil/accueil.component';
+import { CandidatureComponent } from './candidature/candidature.component';
+
 
 
 
@@ -22,7 +24,8 @@ import { AccueilComponent } from './accueil/accueil.component';
     AppComponent,
     AccueilComponent,
     NavBarComponent,
-    FooterComponent
+    FooterComponent,
+    CandidatureComponent
   ],
   imports: [
     BrowserModule,
