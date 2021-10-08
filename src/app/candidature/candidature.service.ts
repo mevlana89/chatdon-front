@@ -23,5 +23,8 @@ export class CandidatureService {
     return this.http.get<Candidature[]>(this.baseUrl+'/candidatures/candidat/'+idCandiat);
   }
 
-  
+  public getAllCandidaturesByCatId(idChat : number):Observable<Candidature[]>
+  {
+    return this.http.get<Candidature[]>(this.baseUrl+'/chats/'+idChat+'/candidatures/');
+  }
 }
