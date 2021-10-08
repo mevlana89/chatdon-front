@@ -1,0 +1,14 @@
+.catLight {
+   display: inline-block; 
+	margin-left: 20px;
+    margin: 20px;
+    border-color: blue;
+   
+}
+
+.button{  
+    border-color: blue;
+    justify-content: flex-end;
+   
+   
+}

@@ -1,5 +1,11 @@
-<p>Ci-dessous mes candidatures</p>
-<div *ngFor="let candidature of candidatures">
+<mat-card>
+<mat-card-title><mat-icon>event_note</mat-icon>Mes candidatures:</mat-card-title>
+<div *ngFor="let candidature of candidatures" class="catLight">
     <app-chat-light [chat]="candidature.chat"></app-chat-light>
-    creer des bouton
+     <mat-grid-list cols="1" rowHeight="20px" class="status"></mat-grid-list> 
+    <button mat-button color="primary">Statut de la candidature {{candidature.status}}</button>
+    <mat-grid-list cols="1" rowHeight="20px" class="button"></mat-grid-list> 
+    <a mat-raised-button color="primary" *ngIf='candidature.status=="refusé"'  >Annuler</a>
+    <a mat-raised-button color="primary" *ngIf='candidature.status!="refusé"'>Masquer</a>  
 </div>
+</mat-card>
