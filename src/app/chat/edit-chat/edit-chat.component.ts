@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { PhotoChat } from '../PhotoChat';
 import { CARACTERES, CATEGORIES_AGE, PELAGES, RACES, REGIONS, SEXES, TAILLES, DONATEUR } from 'src/app/shared/listes';
@@ -62,6 +62,14 @@ export class EditChatComponent implements OnInit {
         }
       )
     });
+  }
+
+  sauveChat() {
+    if (this.modeEdition) {
+      this.updateChat();
+    } else {
+      this.createChat();
+    }
   }
 
   createChat() {

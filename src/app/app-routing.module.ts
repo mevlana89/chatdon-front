@@ -17,12 +17,16 @@ const routes: Routes = [
     component: FicheChatComponent,
   },
   {
+    path: 'editchat/:id',
+    component: EditChatComponent,
+  },
+  {
     path: 'fichechat',
     component: FicheChatComponent,
   },
   {
     path: 'createchat',
-    component: CreateChatComponent,
+    component: EditChatComponent,
   },
   {
     path: 'candidat',
