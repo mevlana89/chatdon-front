@@ -1,0 +1,14 @@
+<div class = "center">
+
+    <ng-template *ngIf="listeChatLight.length>0;then afficherLesChats else pasDeChat"> </ng-template>
+    
+    <ng-template #afficherLesChats>
+        <div *ngFor="let chatLight of listeChatLight" class="catLight" >
+            <app-chat-light  [chat]="chatLight" ></app-chat-light>
+        </div>
+    </ng-template>
+    
+    <ng-template #pasDeChat>
+        <h1> Il n'y a pas de chat avec les critères choisis. </h1>
+        </ng-template>
+</div>

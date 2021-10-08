@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Donateur } from './donateur';
 import { Observable } from 'rxjs';
 import { Candidat } from './candidat';
+import { Chat } from '../chat/Chat';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,11 @@ export class UtilisateurService {
       params: requeteParams,
       responseType: 'text' as 'json'
     });
+  }
+
+  findAllCatsByDonatorId(idDonateur: number): Observable<any>
+  {
+    return this.http.get<any>(`${this.BackUrl}` + "/donateurs/"+idDonateur+"/chats"); 
   }
 
 }
