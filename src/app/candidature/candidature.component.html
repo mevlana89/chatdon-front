@@ -2,10 +2,10 @@
 <mat-card-title><mat-icon>event_note</mat-icon>Mes candidatures:</mat-card-title>
 <div *ngFor="let candidature of candidatures" class="catLight">
     <app-chat-light [chat]="candidature.chat"></app-chat-light>
-    <mat-grid-list cols="2" rowHeight="20px" class="Button"></mat-grid-list>
-    <a mat-label color="primary">Staus: {{candidature.status}}</a></a>
-    
-    
+     <mat-grid-list cols="1" rowHeight="20px" class="status"></mat-grid-list> 
+    <button mat-button color="primary">Statut de la candidature {{candidature.status}}</button>
+    <mat-grid-list cols="1" rowHeight="20px" class="button"></mat-grid-list> 
+    <a mat-raised-button color="primary" *ngIf='candidature.status=="refusé"'  >Annuler</a>
+    <a mat-raised-button color="primary" *ngIf='candidature.status!="refusé"'>Masquer</a>  
 </div>
-
 </mat-card>

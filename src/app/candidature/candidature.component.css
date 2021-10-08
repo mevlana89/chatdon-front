@@ -6,6 +6,9 @@
    
 }
 
-.Button{
-    display: inline-block;  
+.button{  
+    border-color: blue;
+    justify-content: flex-end;
+   
+   
 }
