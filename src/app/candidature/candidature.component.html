@@ -1,5 +1,11 @@
-<p>Ci-dessous mes candidatures</p>
-<div *ngFor="let candidature of candidatures">
+<mat-card>
+<mat-card-title><mat-icon>event_note</mat-icon>Mes candidatures:</mat-card-title>
+<div *ngFor="let candidature of candidatures" class="catLight">
     <app-chat-light [chat]="candidature.chat"></app-chat-light>
-    creer des bouton
+    <mat-grid-list cols="2" rowHeight="20px" class="Button"></mat-grid-list>
+    <a mat-label color="primary">Staus: {{candidature.status}}</a></a>
+    
+    
 </div>
+
+</mat-card>

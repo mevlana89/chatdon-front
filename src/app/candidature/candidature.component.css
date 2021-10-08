@@ -1,0 +1,11 @@
+.catLight {
+   display: inline-block; 
+	margin-left: 20px;
+    margin: 20px;
+    border-color: blue;
+   
+}
+
+.Button{
+    display: inline-block;  
+}
