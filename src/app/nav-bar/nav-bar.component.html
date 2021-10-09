@@ -6,7 +6,7 @@
     <mat-toolbar-row> -->
       <span *ngIf="isVisiteur">
         <a mat-raised-button color="warn" (click)="showLogin()">Se connecter</a>
-        <a mat-button >Créer un compte</a>
+        <a routerLink='/donateur'><button mat-raised-button color="warn" >Créer un compte</button></a>
         <div *ngIf="whileLogin">
           <input [(ngModel)]="mail" >
           <input type="password" [(ngModel)]="pass" >
@@ -21,7 +21,9 @@
           Hello {{ profilCandidat?.prenom }}
         </span>
         <span *ngIf="isDonateur">
-          Hello {{ profilDonateur?.prenom }}
+          <span>
+            <a routerLink='/donateur'><button mat-raised-button color="warn" >Hello {{ profilDonateur?.prenom }}</button></a>
+          </span>
           <span>
             <a routerLink='/createchat'><button mat-raised-button color="warn" >Proposer un chat</button></a>
           </span>

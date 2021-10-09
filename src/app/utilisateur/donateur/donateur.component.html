@@ -7,67 +7,67 @@
 
   <mat-card>
     <mat-card-header>
-      <mat-card-title> Creation profil</mat-card-title>
+      <mat-card-title> Mon compte</mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
        <mat-card-title-group>
-            <mat-form-field appearance="fill">
-              <mat-label> Nom : </mat-label>
-              <input matInput placeholder="Nom" type="text" formControlName="nom" />
-              <mat-icon matSuffix color="primary">account_box</mat-icon>
+          <mat-form-field appearance="fill">
+            <mat-label> Nom : </mat-label>
+            <input matInput placeholder="Nom" type="text" formControlName="nom" />
+            <mat-icon matSuffix color="primary">account_box</mat-icon>
             </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label> Prenom : </mat-label>
-            <input matInput type="text" placeholder="Prenom" formControlName="prenom" />
+            <input matInput type="text" placeholder="Prénom" formControlName="prenom" />
             <mat-icon matSuffix color="primary">account_box</mat-icon>
           </mat-form-field>
       </mat-card-title-group>
 
       <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input matInput type="text" placeholder="pat@example.com" formControlName="mail">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" placeholder="james.bond@example.com" formControlName="mail">
         <mat-icon matSuffix color="primary">email</mat-icon>
        <!--<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Phone number</mat-label>
-        <input matInput type="text" placeholder="num de telephone" formControlName="telephone">
+        <mat-label>Numéro de télpéhone</mat-label>
+        <input matInput type="text" placeholder="uméro de télpéhone" formControlName="telephone">
         <mat-icon matSuffix color="primary">phone</mat-icon>
         <mat-hint>Include area code</mat-hint>
       </mat-form-field>
-    <span></span>
-    <mat-card-title-group>
-        <mat-form-field appearance="fill">
-          <mat-label>Adresse</mat-label>
-          <input matInput type="text" placeholder="num de rue" formControlName="rue">
-          <mat-icon matSuffix color="primary">home</mat-icon>
-          <mat-hint>Include area code</mat-hint>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Code postal</mat-label>
-          <input matInput type="text" placeholder="Code postal" formControlName="codePostal">
-          <mat-icon matSuffix color="primary">home</mat-icon>
-          <mat-hint>Include area code</mat-hint>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>City</mat-label>
-          <input matInput type="text" placeholder="City" formControlName="ville">
-          <mat-icon matSuffix color="primary">home</mat-icon>
-          <mat-hint>Include area code</mat-hint>
-        </mat-form-field>
+      <span></span>
+      <mat-card-title-group formGroupName="adresseDTO">
+          <mat-form-field appearance="fill">
+            <mat-label>Rue</mat-label>
+            <input matInput type="text" placeholder="N° et nom de rue" formControlName="rue">
+            <mat-icon matSuffix color="primary">home</mat-icon>
+            <mat-hint>Include area code</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Code postal</mat-label>
+            <input matInput type="text" placeholder="Code postal" formControlName="codePostal">
+            <mat-icon matSuffix color="primary">home</mat-icon>
+            <mat-hint>Include area code</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Ville</mat-label>
+            <input matInput type="text" placeholder="Ville" formControlName="ville">
+            <mat-icon matSuffix color="primary">home</mat-icon>
+            <mat-hint>Include area code</mat-hint>
+          </mat-form-field>
       </mat-card-title-group>
 
       <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
+        <mat-label>Entrer votre mot de passe</mat-label>
         <input matInput [type]="hide ? 'password' : 'text'" formControlName="motDePasse1">
         <button mat-icon-button matSuffix color="primary" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Confirm your password</mat-label>
+        <mat-label>Confirmer votre mot de passe</mat-label>
         <input matInput [type]="hide ? 'password' : 'text'" formControlName="motDePasse2">
         <button mat-icon-button matSuffix color="primary" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -82,8 +82,11 @@
       <app-candidat *ngIf="radioFormControl.value == 2"></app-candidat>
 
       <mat-card-actions appearance="fill">
-          <button mat-stroked-button color="primary" type="submit"> submit</button>
+          <button mat-stroked-button color="primary" type="submit"> Enregistrer </button>
+          <button mat-stroked-button color="primary" type="submit" (click)="deleteUtilisateur()"> Supprimer</button>
+          <button mat-stroked-button color="primary" type="submit" (click)="getIdConnected()"> Consulter</button>
       </mat-card-actions>
     </mat-card-content>
   </mat-card>
 </form>
+https://jasonwatmore.com/post/2019/06/14/angular-8-reactive-forms-validation-example
