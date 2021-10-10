@@ -9,7 +9,7 @@
     </mat-card-header>
     <img *ngIf="chat.lstPhotos[0] != null; else chatSansPhoto" mat-card-image [src]="chat.lstPhotos[0].cheminPhoto" alt="Photo of a cat">
     <mat-card-content class="div-text">
-      <p>
+      <p class = "maxPx">
         {{chat.descriptif}}
       </p>
     </mat-card-content>
