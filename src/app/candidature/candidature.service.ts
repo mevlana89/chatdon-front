@@ -19,9 +19,12 @@ export class CandidatureService {
   };
 
   constructor(private http: HttpClient) { }
-  public getAllCandidaturesByCandidatId(idCandiat : number):Observable<Candidature[]>{
-    return this.http.get<Candidature[]>(this.baseUrl+'/candidatures/candidat/'+idCandiat);
+  public getAllCandidaturesByCandidatId(idCandidat : number):Observable<Candidature[]>{
+    return this.http.get<Candidature[]>(this.baseUrl+'/candidats/'+idCandidat+'/candidatures');
   }
 
-  
+  public getAllCandidaturesByCatId(idChat : number):Observable<Candidature[]>
+  {
+    return this.http.get<Candidature[]>(this.baseUrl+'/chats/'+idChat+'/candidatures/');
+  }
 }

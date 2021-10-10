@@ -1,4 +1,4 @@
-<form class="form-container" [formGroup]="createDonateurForm" (ngSubmit)="addProfil()" #myForm="ngForm">
+<form class="form-container" [formGroup]="createDonateurForm" #myForm="ngForm">
   <div>
     Form submitted ? {{myForm.submitted}}
     Form valid ? {{createDonateurForm.valid}}
@@ -82,11 +82,10 @@
       <app-candidat *ngIf="radioFormControl.value == 2"></app-candidat>
 
       <mat-card-actions appearance="fill">
-          <button mat-stroked-button color="primary" type="submit"> Enregistrer </button>
+          <button mat-stroked-button color="primary" type="submit" (click)="addUpdateProfil()"> Enregistrer </button>
           <button mat-stroked-button color="primary" type="submit" (click)="deleteUtilisateur()"> Supprimer</button>
           <button mat-stroked-button color="primary" type="submit" (click)="getIdConnected()"> Consulter</button>
       </mat-card-actions>
     </mat-card-content>
   </mat-card>
 </form>
-https://jasonwatmore.com/post/2019/06/14/angular-8-reactive-forms-validation-example

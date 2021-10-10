@@ -4,8 +4,9 @@ import { environment } from 'src/environments/environment';
 import { Donateur } from './donateur';
 import { Observable } from 'rxjs';
 import { Candidat } from './candidat';
-import { Chat } from '../chat/Chat';
 import { DONATEUR, CANDIDAT } from '../shared/listes';
+import { Chat } from '../chat/Chat';
+
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +57,6 @@ export class UtilisateurService {
     });
   }
 
-
   findAllCatsByDonatorId(idDonateur: number): Observable<any>
   {
     return this.http.get<any>(`${this.BackUrl}` + "/donateurs/"+idDonateur+"/chats");
@@ -71,6 +71,11 @@ export class UtilisateurService {
     let endpoint : string= "/donateurs";
     //let requeteParams = new HttpParams().set('id', id);
     return this.http.delete(this.BackUrl + endpoint + `/${id}`,{headers: this.requeteOption});
+  }
+
+  updateDonateur(id: number, donateur : Donateur): Observable<Donateur>{
+    let endPoint : string ="/donateurs";
+    return this.http.post<Donateur>(this.BackUrl + endPoint + `/${id}`, donateur,{headers: this.requeteOption});
   }
 
   reset() {
