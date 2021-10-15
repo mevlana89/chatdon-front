@@ -116,7 +116,7 @@ export class DonateurComponent implements OnInit {
           motDePasse2: null,
           adresseDTO: {
             rue:donateur.adresseDTO?.rue,
-            codePostal:donateur.adresseDTO?.CodePostal,
+            codePostal:donateur.adresseDTO?.codePostal,
             ville:donateur.adresseDTO?.ville
           },
           chatsProposes:donateur.chatsProposes
@@ -135,7 +135,7 @@ export class DonateurComponent implements OnInit {
       motDePasse2: null,
       adresseDTO: {
         rue:donateur.adresseDTO?.rue,
-        codePostal:donateur.adresseDTO?.CodePostal,
+        codePostal:donateur.adresseDTO?.codePostal,
         ville:donateur.adresseDTO?.ville
       },
       chatsProposes:donateur.chatsProposes
