@@ -73,6 +73,11 @@ export class UtilisateurService {
     return this.http.delete(this.BackUrl + endpoint + `/${id}`,{headers: this.requeteOption});
   }
 
+  updateDonateur(id: number, donateur : Donateur): Observable<Donateur>{
+    let endPoint : string ="/donateurs";
+    return this.http.post<Donateur>(this.BackUrl + endPoint + `/${id}`, donateur,{headers: this.requeteOption});
+  }
+
   reset() {
     localStorage.setItem("role", "");
     localStorage.setItem(CANDIDAT, "");
