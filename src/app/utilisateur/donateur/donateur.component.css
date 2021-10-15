@@ -4,8 +4,8 @@
   align-items: flex-start;
 }
 
-.at-card-header .mat-card-title{
-  font-size: medium;
+.mat-card-header .mat-card-title{
+  font-size: larger;
 }
 
 .mat-card-content .mat-form-field {
