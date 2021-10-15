@@ -7,6 +7,7 @@ import { UtilisateurService } from '../utilisateur.service';
 import { Chat } from '../../chat/Chat';
 import { DONATEUR, CANDIDAT } from 'src/app/shared/listes';
 import { Candidat } from '../candidat';
+import { adresse } from '../adresse';
 
 
 
@@ -41,6 +42,7 @@ export class DonateurComponent implements OnInit {
     motDePasse1: [''],
     motDePasse2: [''],
     adresseDTO: this.fb.group ({
+      id:[''],
       rue:[''],
       codePostal:[''],
       ville:['']
@@ -91,7 +93,9 @@ export class DonateurComponent implements OnInit {
   updateDonateur(){
     if (this.createDonateurForm.valid){
       console.log( 'id à maj (updateDonateur) : ' , this.idConnected);
-      //console.log( 'donateur : ', this.createDonateurForm.value )
+      this.donateur = this.createDonateurForm.value;
+
+      console.log( 'donateur : ', this.createDonateurForm.value )
       this.utilisateurService.updateDonateur(this.idConnected, this.createDonateurForm.value)
           .subscribe(
             (data : Donateur) => {
@@ -119,6 +123,7 @@ export class DonateurComponent implements OnInit {
           let donateur : Donateur = JSON.parse( donateurString );
           this.idConnected = donateur.id;
           console.log(' id lu (getUtilisateurConnected)  : ' + this.idConnected + ' donateur : ' + donateur) ;
+          // actualisation du formBuilder
           this.editFormBuilder("1",donateur);
         }
     }
@@ -161,6 +166,7 @@ export class DonateurComponent implements OnInit {
           motDePasse1: null,
           motDePasse2: null,
           adresseDTO: {
+            id:donateur.adresseDTO?.id,
             rue:donateur.adresseDTO?.rue,
             codePostal:donateur.adresseDTO?.codePostal,
             ville:donateur.adresseDTO?.ville
