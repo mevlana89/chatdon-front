@@ -57,7 +57,8 @@ export class CreateChatComponent implements OnInit {
     console.log(this.leChat.nom + ", " + this.leChat.caractere + ", " + this.leChat.race);
     this.serviceChat.createChat(this.leChat).subscribe(
     rsp => {
-      console.log("retour service : " + rsp.nom + ", " + rsp.caractere + ", " + rsp.race);
+      console.log("retour service => id : " + rsp.id + " nom : " + rsp.nom + ", " + rsp.caractere + ", " + rsp.race);
+      this.router.navigate(['/fichechat/', rsp.id]);
     },
     error => {
       console.log(" createChat error!");
@@ -69,13 +70,13 @@ export class CreateChatComponent implements OnInit {
     console.log("addUrlPhoto : " + this.addPhoto);
     const laPhoto = new PhotoChat();
     laPhoto.cheminPhoto = this.addPhoto;
-    this.leChat.lstPhotos.push(laPhoto);
+    this.leChat.lstGetPhotoChatDto.push(laPhoto);
     this.addPhoto = "";
   }
 
   removeUrlPhoto(photo: PhotoChat) {
-    this.leChat.lstPhotos.forEach((value,index) => {
-      if (value==photo) this.leChat.lstPhotos.splice(index, 1);
+    this.leChat.lstGetPhotoChatDto.forEach((value,index) => {
+      if (value==photo) this.leChat.lstGetPhotoChatDto.splice(index, 1);
     });
   }
 }

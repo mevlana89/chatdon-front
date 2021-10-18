@@ -1,5 +1,5 @@
 <h1><img src="assets/icone_chat.png" height=18> {{ leChat.nom }}</h1>
-  <div class="center-div" *ngIf="leChat.lstPhotos[0]"><p align="center"><img src="{{ leChat.lstPhotos[0].cheminPhoto }}" height="200"></p></div>
+  <div class="center-div" *ngIf="leChat.lstGetPhotoChatDto != undefined"><p align="center"><img src="{{ leChat.lstGetPhotoChatDto[0].cheminPhoto }}" height="200"></p></div>
   <div class="center-div"><p align="center"><mat-slider min="1" max="100" step="1" value="50"></mat-slider></p></div>
   <div class="center-div"><p align="center">todo : carroussel</p></div>
 <mat-card>
@@ -13,7 +13,7 @@
       <mat-card-content>Race : {{ leChat.race }}</mat-card-content>
     </mat-grid-tile>
     <mat-grid-tile>
-      <mat-card-content>Sexe : {{ leChat.sexe}}</mat-card-content>
+      <mat-card-content>Sexe : {{ leChat.sexe }}</mat-card-content>
     </mat-grid-tile>
     <mat-grid-tile>
       <mat-card-content>Taille : {{ leChat.taille }}</mat-card-content>
@@ -48,7 +48,7 @@
 <mat-card>
   <mat-card-title><mat-icon>event_note</mat-icon> Présentation</mat-card-title>
   <mat-grid-list cols="4" rowHeight="150px">
-    <mat-grid-tile  *ngFor="let photos of leChat.lstPhotos">
+    <mat-grid-tile  *ngFor="let photos of leChat.lstGetPhotoChatDto">
       <img mat-card-image src="{{photos.cheminPhoto}}" height="145" >
     </mat-grid-tile>
   </mat-grid-list>
