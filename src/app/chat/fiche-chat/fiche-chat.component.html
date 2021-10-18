@@ -1,7 +1,41 @@
 <h1><img src="assets/icone_chat.png" height=18> {{ leChat.nom }}</h1>
   <div class="center-div" *ngIf="leChat.lstGetPhotoChatDto != undefined"><p align="center"><img src="{{ leChat.lstGetPhotoChatDto[0].cheminPhoto }}" height="200"></p></div>
   <div class="center-div"><p align="center"><mat-slider min="1" max="100" step="1" value="50"></mat-slider></p></div>
-  <div class="center-div"><p align="center">todo : carroussel</p></div>
+  <!-- <div class="center-div"><p align="center">todo : carroussel</p></div> -->
+  <!-- <div class="center-div"><p align="center">
+      <mat-carousel>
+        <mat-carousel-slide>
+          ...
+        </mat-carousel-slide>
+    </mat-carousel>
+  </p></div> -->
+  <div class="center-div">
+    <p align="center">
+      <mat-carousel
+        timings="750ms ease-in"
+        [autoplay]="true"
+        [interval]="4000"
+        color="primary"
+        maxWidth="40%"
+        [proportion]="60"
+        [slides]="5"
+        [loop]="true"
+        [hideArrows]="false"
+        [hideIndicators]="false"
+        [useKeyboard]="true"
+        [useMouseWheel]="false"
+        orientation="ltr"
+      >
+      <mat-carousel-slide
+      #matCarouselSlide
+      *ngFor="let photos of leChat.lstPhotos; let i = index"
+      [image]="photos.cheminPhoto"
+      overlayColor="#f000040"
+      [hideOverlay]="false"
+      ></mat-carousel-slide>
+    </mat-carousel>
+    </p>
+  </div>
 <mat-card>
   <img mat-card-avatar>
   <mat-card-title><mat-icon>assignment</mat-icon> Fiche de {{ leChat.nom }}</mat-card-title>

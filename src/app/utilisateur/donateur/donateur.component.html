@@ -1,4 +1,4 @@
-<form class="form-container" [formGroup]="createDonateurForm" (ngSubmit)="addProfil()" #myForm="ngForm">
+<form class="form-container" [formGroup]="createDonateurForm" #myForm="ngForm">
   <div>
     Form submitted ? {{myForm.submitted}}
     Form valid ? {{createDonateurForm.valid}}
@@ -7,71 +7,88 @@
 
   <mat-card>
     <mat-card-header>
-      <mat-card-title> Creation profil</mat-card-title>
+      <mat-card-title> Mon compte</mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
        <mat-card-title-group>
-            <mat-form-field appearance="fill">
-              <mat-label> Nom : </mat-label>
-              <input matInput placeholder="Nom" type="text" formControlName="nom" />
-              <mat-icon matSuffix color="primary">account_box</mat-icon>
-            </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label> Nom : </mat-label>
+            <input name="nom" matInput placeholder="Nom" type="text" formControlName="nom" />
+            <mat-icon matSuffix color="primary">account_box</mat-icon>
+            <mat-error *ngIf="createDonateurForm.controls['nom'].errors">Le nom est obligatoire</mat-error>
+            <mat-hint>champ requis</mat-hint>
+          </mat-form-field>
+
           <mat-form-field appearance="fill">
             <mat-label> Prenom : </mat-label>
-            <input matInput type="text" placeholder="Prenom" formControlName="prenom" />
+            <input matInput type="text" placeholder="Prénom" formControlName="prenom" />
             <mat-icon matSuffix color="primary">account_box</mat-icon>
           </mat-form-field>
       </mat-card-title-group>
 
       <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input matInput type="text" placeholder="pat@example.com" formControlName="mail">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" placeholder="james.bond@example.com" formControlName="mail">
         <mat-icon matSuffix color="primary">email</mat-icon>
-       <!--<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+        <mat-error *ngIf="createDonateurForm.controls['mail'].errors && !createDonateurForm.controls['mail'].pristine && !createDonateurForm.controls['mail'].errors?.rules">
+          <div [hidden]="!createDonateurForm.controls['mail'].errors.required">l'Email est obligatoire</div>
+          <div [hidden]="!createDonateurForm.controls['mail'].invalid">format email non valide</div>
+        </mat-error>
+        <mat-hint>champ requis - extension .fr obligatoire</mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Phone number</mat-label>
-        <input matInput type="text" placeholder="num de telephone" formControlName="telephone">
+        <mat-label>Numéro de télpéhone</mat-label>
+        <input matInput type="number" placeholder="0158320000" formControlName="telephone">
+        <mat-error *ngIf="createDonateurForm.controls['telephone'].errors && !createDonateurForm.controls['telephone'].pristine">
+          <div [hidden]="!createDonateurForm.controls['telephone'].invalid">le champ ne doit contenir que 10 chiffres</div>
+        </mat-error>
         <mat-icon matSuffix color="primary">phone</mat-icon>
-        <mat-hint>Include area code</mat-hint>
+        <mat-hint>champ numérique</mat-hint>
       </mat-form-field>
-    <span></span>
-    <mat-card-title-group>
-        <mat-form-field appearance="fill">
-          <mat-label>Adresse</mat-label>
-          <input matInput type="text" placeholder="num de rue" formControlName="rue">
-          <mat-icon matSuffix color="primary">home</mat-icon>
-          <mat-hint>Include area code</mat-hint>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Code postal</mat-label>
-          <input matInput type="text" placeholder="Code postal" formControlName="codePostal">
-          <mat-icon matSuffix color="primary">home</mat-icon>
-          <mat-hint>Include area code</mat-hint>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>City</mat-label>
-          <input matInput type="text" placeholder="City" formControlName="ville">
-          <mat-icon matSuffix color="primary">home</mat-icon>
-          <mat-hint>Include area code</mat-hint>
-        </mat-form-field>
+      <span></span>
+      <mat-card-title-group formGroupName="adresseDTO">
+          <mat-form-field appearance="fill">
+            <mat-label>Rue</mat-label>
+            <input matInput type="text" placeholder="N° et nom de rue" formControlName="rue">
+            <mat-icon matSuffix color="primary">home</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Code postal</mat-label>
+            <input matInput type="text" placeholder="Code postal" formControlName="codePostal">
+            <mat-icon matSuffix color="primary">home</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Ville</mat-label>
+            <input matInput type="text" placeholder="Ville" formControlName="ville">
+            <mat-icon matSuffix color="primary">home</mat-icon>
+          </mat-form-field>
       </mat-card-title-group>
 
       <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
+        <mat-label>Entrer votre mot de passe</mat-label>
         <input matInput [type]="hide ? 'password' : 'text'" formControlName="motDePasse1">
+        <mat-error *ngIf="createDonateurForm.controls['motDePasse1'].errors && !createDonateurForm.controls['motDePasse1'].pristine && !createDonateurForm.controls['motDePasse1'].errors?.rules">
+          <div [hidden]="!createDonateurForm.controls['motDePasse1'].errors.required">le mot de passe est obligatoire</div>
+          <div [hidden]="!createDonateurForm.controls['motDePasse1'].invalid">le champ doit contenir au moins 3 caractères et une majuscule</div>
+        </mat-error>
         <button mat-icon-button matSuffix color="primary" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
+        <mat-hint>champ requis</mat-hint>
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Confirm your password</mat-label>
+        <mat-label>Confirmer votre mot de passe</mat-label>
         <input matInput [type]="hide ? 'password' : 'text'" formControlName="motDePasse2">
+        <mat-error *ngIf="createDonateurForm.controls['motDePasse2'].errors && !createDonateurForm.controls['motDePasse2'].pristine && !createDonateurForm.controls['motDePasse2'].errors?.rules">
+          <div [hidden]="!createDonateurForm.controls['motDePasse2'].errors.required">le mot de passe est obligatoire</div>
+          <div [hidden]="!createDonateurForm.controls['motDePasse2'].invalid">le champ doit contenir au moins 3 caractères et une majuscule</div>
+        </mat-error>
         <button mat-icon-button matSuffix color="primary" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
+        <mat-hint>champ requis</mat-hint>
       </mat-form-field>
 
       <mat-radio-group aria-label="Select an option" [formControl]="radioFormControl">
@@ -79,10 +96,14 @@
         <mat-radio-button color="primary" value="2">Candidat</mat-radio-button>
       </mat-radio-group>
 
+    <mat-card>
       <app-candidat *ngIf="radioFormControl.value == 2"></app-candidat>
+    </mat-card>
 
       <mat-card-actions appearance="fill">
-          <button mat-stroked-button color="primary" type="submit"> submit</button>
+          <button mat-stroked-button color="primary" type="submit"> Enregistrer </button>
+          <button mat-stroked-button color="primary" type="submit" (click)="deleteUtilisateur()"> Supprimer</button>
+          <button mat-stroked-button color="primary" type="submit" (click)="getIdConnected()"> Consulter</button>
       </mat-card-actions>
     </mat-card-content>
   </mat-card>
