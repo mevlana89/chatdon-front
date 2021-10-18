@@ -11,14 +11,21 @@ import { Candidature } from './candidature.model';
 export class CandidatureService {
 
   private baseUrl = environment.wsRootUrl;
+  private BackUrl: string =environment.wsRootUrl;
 
   optionRequete = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin':'*'
     })
   };
+  requeteOption: HttpHeaders | { [header: string]: string | string[]; } | undefined;
 
   constructor(private http: HttpClient) { }
+
+  public createCandidature(candidature: Candidature): Observable<Candidature>{
+    let endPoint: string="/candidature";
+    return this.http.post<Candidature>(this.BackUrl + endPoint, candidature, { headers: this.requeteOption } );
+  }
   public getAllCandidaturesByCandidatId(idCandidat : number):Observable<Candidature[]>{
     return this.http.get<Candidature[]>(this.baseUrl+'/candidats/'+idCandidat+'/candidatures');
   }
