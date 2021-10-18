@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CreateChatComponent } from './create-chat/create-chat.component';
 import { EditChatComponent } from './edit-chat/edit-chat.component';
 import { EditFicheChatComponent } from './edit-fiche-chat/edit-fiche-chat.component';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { EditFicheChatComponent } from './edit-fiche-chat/edit-fiche-chat.compon
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    MatCarouselModule.forRoot()
   ]
 })
 export class ChatModule { }
