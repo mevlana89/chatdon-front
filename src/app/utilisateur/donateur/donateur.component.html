@@ -14,7 +14,7 @@
        <mat-card-title-group>
           <mat-form-field appearance="fill">
             <mat-label> Nom : </mat-label>
-            <input name="nom" matInput placeholder="Nom" type="text" formControlName="nom" />
+            <input name="nom" matInput placeholder="Nom" type="text" formControlName="nom" required/>
             <mat-icon matSuffix color="primary">account_box</mat-icon>
             <mat-error *ngIf="createDonateurForm.controls['nom'].errors">Le nom est obligatoire</mat-error>
             <mat-hint>champ requis</mat-hint>
@@ -29,7 +29,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput type="text" placeholder="james.bond@example.com" formControlName="mail">
+        <input matInput type="text" placeholder="james.bond@example.com" formControlName="mail" required>
         <mat-icon matSuffix color="primary">email</mat-icon>
         <mat-error *ngIf="createDonateurForm.controls['mail'].errors && !createDonateurForm.controls['mail'].pristine && !createDonateurForm.controls['mail'].errors?.rules">
           <div [hidden]="!createDonateurForm.controls['mail'].errors.required">l'Email est obligatoire</div>
@@ -56,8 +56,9 @@
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Code postal</mat-label>
-            <input matInput type="text" placeholder="Code postal" formControlName="codePostal">
+            <input matInput type="text" placeholder="Code postal" formControlName="codePostal" required>
             <mat-icon matSuffix color="primary">home</mat-icon>
+            <mat-hint>champ requis</mat-hint>
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Ville</mat-label>
@@ -68,7 +69,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Entrer votre mot de passe</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" formControlName="motDePasse1">
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="motDePasse1" required>
         <mat-error *ngIf="createDonateurForm.controls['motDePasse1'].errors && !createDonateurForm.controls['motDePasse1'].pristine && !createDonateurForm.controls['motDePasse1'].errors?.rules">
           <div [hidden]="!createDonateurForm.controls['motDePasse1'].errors.required">le mot de passe est obligatoire</div>
           <div [hidden]="!createDonateurForm.controls['motDePasse1'].invalid">le champ doit contenir au moins 3 caractères et une majuscule</div>
@@ -80,7 +81,7 @@
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Confirmer votre mot de passe</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" formControlName="motDePasse2">
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="motDePasse2" required>
         <mat-error *ngIf="createDonateurForm.controls['motDePasse2'].errors && !createDonateurForm.controls['motDePasse2'].pristine && !createDonateurForm.controls['motDePasse2'].errors?.rules">
           <div [hidden]="!createDonateurForm.controls['motDePasse2'].errors.required">le mot de passe est obligatoire</div>
           <div [hidden]="!createDonateurForm.controls['motDePasse2'].invalid">le champ doit contenir au moins 3 caractères et une majuscule</div>
