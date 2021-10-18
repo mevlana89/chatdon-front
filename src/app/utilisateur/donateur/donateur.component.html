@@ -19,6 +19,7 @@
             <mat-error *ngIf="createDonateurForm.controls['nom'].errors">Le nom est obligatoire</mat-error>
             <mat-hint>champ requis</mat-hint>
           </mat-form-field>
+
           <mat-form-field appearance="fill">
             <mat-label> Prenom : </mat-label>
             <input matInput type="text" placeholder="Prénom" formControlName="prenom" />
@@ -28,7 +29,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput type="email" placeholder="james.bond@example.com" formControlName="mail">
+        <input matInput type="text" placeholder="james.bond@example.com" formControlName="mail">
         <mat-icon matSuffix color="primary">email</mat-icon>
         <mat-error *ngIf="createDonateurForm.controls['mail'].errors && !createDonateurForm.controls['mail'].pristine && !createDonateurForm.controls['mail'].errors?.rules">
           <div [hidden]="!createDonateurForm.controls['mail'].errors.required">l'Email est obligatoire</div>
@@ -95,10 +96,12 @@
         <mat-radio-button color="primary" value="2">Candidat</mat-radio-button>
       </mat-radio-group>
 
+    <mat-card>
       <app-candidat *ngIf="radioFormControl.value == 2"></app-candidat>
+    </mat-card>
 
       <mat-card-actions appearance="fill">
-          <button mat-stroked-button color="primary" type="submit" (click)="addUpdateProfil()"> Enregistrer </button>
+          <button mat-stroked-button color="primary" type="submit"> Enregistrer </button>
           <button mat-stroked-button color="primary" type="submit" (click)="deleteUtilisateur()"> Supprimer</button>
           <button mat-stroked-button color="primary" type="submit" (click)="getIdConnected()"> Consulter</button>
       </mat-card-actions>
