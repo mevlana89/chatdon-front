@@ -1,4 +1,4 @@
-<form class="form-container" [formGroup]="createDonateurForm" (ngSubmit)="addProfil()" #myForm="ngForm">
+<form class="form-container" [formGroup]="createDonateurForm" #myForm="ngForm">
   <div>
     Form submitted ? {{myForm.submitted}}
     Form valid ? {{createDonateurForm.valid}}
@@ -97,7 +97,9 @@
         <mat-radio-button color="primary" value="2">Candidat</mat-radio-button>
       </mat-radio-group>
 
+    <mat-card>
       <app-candidat *ngIf="radioFormControl.value == 2"></app-candidat>
+    </mat-card>
 
       <mat-card-actions appearance="fill">
           <button mat-stroked-button color="primary" type="submit"> Enregistrer </button>
