@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Donateur } from '../donateur';
@@ -7,7 +7,8 @@ import { UtilisateurService } from '../utilisateur.service';
 import { Chat } from '../../chat/Chat';
 import { DONATEUR } from 'src/app/shared/listes';
 import { Candidat } from '../candidat';
-
+import { adresse } from '../adresse';
+import { passwordValidator, forbidenExtensionValidator } from '../form-validators';
 
 @Component({
   selector: 'app-donateur',
@@ -33,15 +34,15 @@ export class DonateurComponent implements OnInit {
 
   createDonateurForm = this.fb.group ({
     id:[''],
-    nom: [''],
+    nom: ['',Validators.required],
     prenom: [''],
-    mail: [''],
-    telephone: [''],
-    motDePasse1: [''],
-    motDePasse2: [''],
+    mail: ['',[Validators.required,Validators.email, forbidenExtensionValidator('.fr')]],
+    telephone: ['',Validators.pattern(new RegExp("[0-9]{10}")) ],
+    motDePasse1: ['',[Validators.required, Validators.minLength(3), passwordValidator]],
+    motDePasse2: ['',[Validators.required, Validators.minLength(3), passwordValidator]],
     adresseDTO: this.fb.group ({
       rue:[''],
-      codePostal:[''],
+      codePostal:['',Validators.required],
       ville:['']
     }),
     chatsProposes:[this.chatInit]
