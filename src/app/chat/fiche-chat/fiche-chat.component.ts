@@ -57,6 +57,9 @@ export class FicheChatComponent implements OnInit {
           }
 
         }
+      }, error => {
+        console.log("Erreur recup chat ! ");
+        this.router.navigate(['/']);
       });
     });
   }
@@ -64,6 +67,5 @@ export class FicheChatComponent implements OnInit {
   editChat() {
     this.router.navigate(['/updatechat/', this.leChat.id]);
   }
-
 
 }

@@ -133,6 +133,16 @@ export class EditChatComponent implements OnInit {
     });
   }
 
+  deleteFiche() {
+    console.log("Delete Fiche ! ");
+    this.serviceChat.deleteChatById(this.leChat.id).subscribe(
+      rsp => {
+        console.log(" deleteChat response : " + rsp);
+        this.router.navigate(['/']);
+      }
+    )
+  }
+
   cancelCreateOrEdit() {
     console.log("cancel ! retour accueil")
     this.router.navigate(['/']);

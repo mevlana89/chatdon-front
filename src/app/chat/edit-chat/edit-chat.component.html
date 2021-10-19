@@ -129,7 +129,12 @@
       <img src="{{ photo.cheminPhoto }}" (click)="removeUrlPhoto(photo)" height="100" title="Clic pour retirer l'url" alt="Photo ajoutée">
     </span>
   </mat-card>
-  <button mat-raised-button class="btn-cancel" (click)="cancelCreateOrEdit()">Annuler</button>
-  <button mat-raised-button type="submit" class="button btn-valid">Enregistrer la fiche</button>
-  <br>
+  <mat-toolbar color="primary" >
+    <span class="fill-space"></span>
+    <span>
+      <button mat-raised-button class="btn-cancel" (click)="cancelCreateOrEdit()">Annuler</button>
+      <button *ngIf="modeEdition" mat-raised-button color="warn" class="btn-cancel" (click)="deleteFiche()">Supprimer la fiche</button>
+      <button mat-raised-button type="submit" class="button btn-valid">Enregistrer la fiche</button>
+    </span>
+  </mat-toolbar>
 </form>

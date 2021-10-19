@@ -86,4 +86,11 @@ export class ListeChatLightService {
 
     return this.http.get<any>(`${this.baseUrl}` + "/chats", { params: parametres } );
   }
+
+  getSuggestCatsByCandidatId(idCandidat: number,filterDTO : FilterDto): Observable<any>
+  {
+    let parametres = new HttpParams();
+
+    return this.http.get<any>(`${this.baseUrl}` + "/candidats/"+ idCandidat +"/suggestions", { params: parametres } );
+  }
 }
