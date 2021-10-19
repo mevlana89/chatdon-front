@@ -124,6 +124,9 @@ export class DonateurComponent implements OnInit {
     console.log('donateur form :' , this.createDonateurForm.value);
     console.log('id : ' , this.createDonateurForm.value.id);
     // JSon width CreateDonateurForm (parent) and candidatForm(child)
+    if(this.createDonateurForm.value.id !>0) {
+      this.createDonateurForm.value.id =0;
+    }
     this.candidat = {
         id: this.createDonateurForm.value.id,
         nom : this.createDonateurForm.value.nom,
@@ -147,17 +150,7 @@ export class DonateurComponent implements OnInit {
     }
     console.log('candidat : ' , this.candidat);
     console.log('this.createDonateurForm.value.id: ', this.createDonateurForm.value.id);
-    if (this.createDonateurForm.value.id == null || this.createDonateurForm.value.id === 0 ) {
-      this.utilisateurService.createCandidat(this.candidat)
-      .subscribe(
-        (data:Candidat) => {
-          console.log ('--- creation candidat')
-          console.log(data);
-          alert('Votre compte a été enregistré avec succès. Veuillez vous connecter svp.');
-          this.router.navigate( ['/'] );
-        }
-      );
-    } else {
+    if (this.createDonateurForm.value.id > 0 ) {
       this.utilisateurService.updateCandidat(this.idConnected, this.candidat)
       .subscribe(
         (data : Candidat) => {
@@ -173,38 +166,20 @@ export class DonateurComponent implements OnInit {
               localStorage.setItem(CANDIDAT, JSON.stringify(this.candidat));
             });
         }
+      )
+    } else {
+      this.utilisateurService.createCandidat(this.candidat)
+      .subscribe(
+        (data:Candidat) => {
+          console.log ('--- creation candidat')
+          console.log(data);
+          alert('Votre compte a été enregistré avec succès. Veuillez vous connecter svp.');
+          this.router.navigate( ['/'] );
+        }
       );
     }
   }
 
-  updateCandidat(){
-    if (this.createDonateurForm.valid){
-      console.log( 'id à maj (updateCandidat) : ' , this.idConnected);
-      console.log(' role', this.roleConnectedSave);
-      this.utilisateurService.getCandidatById(this.idConnected).subscribe(
-        data => {
-          this.candidat = data;
-        }
-      )
-
-      console.log( 'donateur : ', this.candidat)
-      this.utilisateurService.updateCandidat(this.idConnected, this.candidat!)
-          .subscribe(
-            (data : Candidat) => {
-              this.candidat = data;
-              alert('Votre compte a été mis à jour avec succès.');
-              // Maj du local Storage
-              this.utilisateurService.getCandidatById(this.idConnected).subscribe(
-                dataD => {
-                  this.candidat = dataD;
-                  console.log("set localStorage : " + CANDIDAT);
-                  localStorage.setItem("role", CANDIDAT);
-                  localStorage.setItem(CANDIDAT, JSON.stringify(this.candidat));
-                });
-            }
-          );
-    }
-  }
   // getters
   getIdConnected(){
     let roleConnected : string | null = localStorage.getItem('role');
