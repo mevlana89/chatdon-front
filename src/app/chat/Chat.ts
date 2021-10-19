@@ -17,7 +17,7 @@ export class Chat {
   sociableChat: boolean = false;
   sociableChien: boolean = false;
   // TODO : candidatures: Candidature[];
-  lstGetPhotoChatDto: PhotoChat[] = [];
+  lstPhotos: PhotoChat[] = [];
   donateur: Donateur | undefined;
 
 }

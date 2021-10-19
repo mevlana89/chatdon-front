@@ -125,7 +125,7 @@
     </mat-form-field>
     <button mat-raised-button type="button" (click)="addUrlPhoto()" >Ajouter</button>
     <br>
-    <span *ngFor="let photo of leChat.lstGetPhotoChatDto">
+    <span *ngFor="let photo of leChat.lstPhotos">
       <img src="{{ photo.cheminPhoto }}" (click)="removeUrlPhoto(photo)" height="100" title="Clic pour retirer l'url" alt="Photo ajoutée">
     </span>
   </mat-card>

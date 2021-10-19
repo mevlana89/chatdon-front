@@ -84,9 +84,9 @@ export class EditChatComponent implements OnInit {
             this.router.navigate(['/']);
           }
 
-          if (this.leChat.lstGetPhotoChatDto == null) {
+          if (this.leChat.lstPhotos == null) {
             console.log("pas de photos, init lst");
-            this.leChat.lstGetPhotoChatDto = [];
+            this.leChat.lstPhotos = [];
           }
 
         }
@@ -142,13 +142,13 @@ export class EditChatComponent implements OnInit {
     console.log("addUrlPhoto : " + this.addPhoto);
     const laPhoto = new PhotoChat();
     laPhoto.cheminPhoto = this.addPhoto;
-    this.leChat.lstGetPhotoChatDto.push(laPhoto);
+    this.leChat.lstPhotos.push(laPhoto);
     this.addPhoto = "";
   }
 
   removeUrlPhoto(photo: PhotoChat) {
-    this.leChat.lstGetPhotoChatDto.forEach((value,index) => {
-      if (value==photo) this.leChat.lstGetPhotoChatDto.splice(index, 1);
+    this.leChat.lstPhotos.forEach((value,index) => {
+      if (value==photo) this.leChat.lstPhotos.splice(index, 1);
     });
   }
 

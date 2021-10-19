@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccueilComponent } from './accueil/accueil.component';
-import { CreateChatComponent } from './chat/create-chat/create-chat.component';
 import { EditChatComponent } from './chat/edit-chat/edit-chat.component';
 import { FicheChatComponent } from './chat/fiche-chat/fiche-chat.component';
 import { CandidatComponent } from './utilisateur/candidat/candidat.component';

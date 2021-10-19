@@ -1,13 +1,57 @@
 
+h1 {
+  font-size: 250%;
+  line-height: 200%;
+  color:purple;
+}
+
 .center-div {
   margin: 0 auto;
   width: 80%;
+}
+
+mat-toolbar {
+  flex: auto 1 1;
 }
 
 mat-card {
   margin: 5;
 }
 
+mat-card-title {
+  margin: 15px;
+  line-height: 150%;
+}
+
 body {
   margin: 5;
+}
+
+button {
+  margin-left: 3px;
+  margin-right: 3px;
+  float: right;
+}
+
+mat-form-field {
+  width: 90%;
+}
+
+mat-card {
+  width: 95%;
+  margin: 10px;
+}
+
+::ng-deep.mat-checkbox-checked.mat-accent.mat-checkbox-disabled {
+  color: black;
+}
+
+.intitule {
+  color:blueviolet;
+  font-size: medium;
+}
+
+.contenu {
+  color:purple;
+  font-size: medium;
 }
