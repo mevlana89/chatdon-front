@@ -65,5 +65,4 @@ export class FicheChatComponent implements OnInit {
     this.router.navigate(['/updatechat/', this.leChat.id]);
   }
 
-
 }
