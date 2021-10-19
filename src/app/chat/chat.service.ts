@@ -33,7 +33,10 @@ export class ChatService {
     return this.http.post<Chat>(`${this.baseUrl}` + "/updateChat", chat, this.optionRequete);
   }
 
-
+  deleteChatById(chatId: number): Observable<boolean>{
+    console.log("delete chat service chat");
+    return this.http.post<boolean>(`${this.baseUrl}` + "/deleteChatById/" + `${chatId}`, this.optionRequete);
+  }
 
 
 }

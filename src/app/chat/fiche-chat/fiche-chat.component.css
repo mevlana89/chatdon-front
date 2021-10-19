@@ -3,6 +3,8 @@ h1 {
   font-size: 250%;
   line-height: 200%;
   color:purple;
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Arial Black", Arial, Verdana, sans-serif;
 }
 
 .center-div {
@@ -37,6 +39,10 @@ mat-form-field {
   width: 90%;
 }
 
+.fill-space {
+  flex: 1 1 auto;
+}
+
 mat-card {
   width: 95%;
   margin: 10px;
@@ -54,4 +60,5 @@ mat-card {
 .contenu {
   color:purple;
   font-size: medium;
+  font-weight: bold;
 }

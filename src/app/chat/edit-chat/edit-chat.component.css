@@ -1,6 +1,23 @@
-.btn-valid {
-  float: right;
+h1 {
+  font-size: 250%;
+  line-height: 200%;
+  color:purple;
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Arial Black", Arial, Verdana, sans-serif;
+}
+
+mat-card-title {
   margin: 15px;
+  line-height: 150%;
+}
+
+
+.btn-valid, .btn-cancel {
+  margin: 5px;
+}
+
+.fill-space {
+  flex: 1 1 auto;
 }
 
 mat-form-field {
@@ -10,10 +27,6 @@ mat-form-field {
 mat-card {
   width: 95%;
   margin: 10px;
-}
-
-mat-card-title {
-  margin: 15px;
 }
 
 button .image {
