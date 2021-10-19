@@ -31,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: 'candidat',
-    component: CandidatComponent,
+    component: DonateurComponent,
   },
   {
     path: 'donateur',

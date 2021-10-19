@@ -7,7 +7,6 @@ export class Candidat extends utilisateur {
     presenceJardin: boolean = false;
     sociableChat: boolean = false;
     sociableChien: boolean = false;
-    nbEnfant: number = 0;
     ageBenjamin: number = 0;
 
 }

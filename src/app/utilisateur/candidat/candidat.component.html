@@ -14,7 +14,7 @@
       <mat-select formControlName="typeHebergement" required>
         <mat-option>--</mat-option>
         <mat-option *ngFor="let hebergement of typeHebergement" [value]="hebergement">
-          {{hebergement.name}}
+          {{hebergement}}
         </mat-option>
       </mat-select>
       <!-- <mat-error *ngIf="createCandidatForm.hasError('required')">Please choose an animal</mat-error> -->
@@ -30,32 +30,36 @@
 
     <mat-radio-group aria-label="Select an option" formControlName="presenceJardin">
       <mat-label>Jardin : </mat-label>
-      <mat-radio-button color="primary" value="1">Oui</mat-radio-button>
-      <mat-radio-button color="primary" value="2">Non</mat-radio-button>
+      <mat-radio-button color="primary" value="true">Oui</mat-radio-button>
+      <mat-radio-button color="primary" value="false">Non</mat-radio-button>
     </mat-radio-group>
     <div></div>
 
     <mat-radio-group aria-label="Select an option" formControlName="sociableChat">
       <mat-label>Autre(s) chat(s) : </mat-label>
-      <mat-radio-button color="primary" value="1">Oui</mat-radio-button>
-      <mat-radio-button color="primary" value="2">Non</mat-radio-button>
+      <mat-radio-button color="primary" value="true">Oui</mat-radio-button>
+      <mat-radio-button color="primary" value="false">Non</mat-radio-button>
     </mat-radio-group>
     <div></div>
 
     <mat-radio-group aria-label="Select an option" formControlName="sociableChien">
       <mat-label>Chien(s) : </mat-label>
-      <mat-radio-button color="primary" value="1">Oui</mat-radio-button>
-      <mat-radio-button color="primary" value="2">Non</mat-radio-button>
+      <mat-radio-button color="primary" value="true">Oui</mat-radio-button>
+      <mat-radio-button color="primary" value="false">Non</mat-radio-button>
     </mat-radio-group>
     <div></div>
 
     <mat-form-field appearance="fill">
       <mat-label>Âge du plus jeune enfant</mat-label>
-      <input matInput type="number" placeholder="Ex. 12" min="0" max="99">
+      <input matInput type="number" placeholder="Ex. 12" formControlName="ageBenjamin">
       <span matSuffix>ans</span>
       <mat-hint>laisser vide si pas d'enfant</mat-hint>
       <!-- <mat-error *ngIf="surfaceHebergement.invalid">Min size: 10px</mat-error> -->
     </mat-form-field>
+
+    <mat-card-actions appearance="fill">
+      <button mat-stroked-button color="primary" type="submit" (click)="addCandidatToParent()"> Enregistrer </button>
+  </mat-card-actions>
 
 </mat-card-content>
 </form>

@@ -97,14 +97,23 @@
       </mat-radio-group>
 
     <mat-card>
-      <app-candidat *ngIf="radioFormControl.value == 2"></app-candidat>
+      <app-candidat *ngIf="radioFormControl.value === '2'"
+          (addCandidat)="onReceiveAddCandidat($event)"
+          [typeHebergementC]="typeHebergementP"
+          [surfaceHebergementC]= "surfaceHebergementP"
+          [presenceJardinC] = "presenceJardinP"
+          [sociableChatC] = "sociableChatP"
+          [sociableChienC] = "sociableChienP"
+          [ageBenjaminC]  = "ageBenjaminP"
+      ></app-candidat>
     </mat-card>
 
-      <mat-card-actions appearance="fill">
-          <button mat-stroked-button color="primary" type="submit"> Enregistrer </button>
-          <button mat-stroked-button color="primary" type="submit" (click)="deleteUtilisateur()"> Supprimer</button>
-          <button mat-stroked-button color="primary" type="submit" (click)="getIdConnected()"> Consulter</button>
-      </mat-card-actions>
+    <mat-card-actions appearance="fill">
+      <button mat-stroked-button color="primary" type="submit" (click)="addUpdateDonateur()" *ngIf=" radioFormControl.value !== '2' "> Enregistrer </button>
+      <button mat-stroked-button color="primary" type="submit" (click)="deleteUtilisateur()"> Supprimer</button>
+      <button mat-stroked-button color="primary" type="submit" (click)="getIdConnected()"> Consulter</button>
+    </mat-card-actions>
+
     </mat-card-content>
   </mat-card>
 </form>

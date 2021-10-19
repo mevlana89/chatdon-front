@@ -20,6 +20,7 @@ export class UtilisateurService {
    // this.requeteOption = new HttpHeaders().set('Access-Control-Allow-Origin','*');
   }
 
+  // services donateur
   createDonateur(donateur: Donateur): Observable<Donateur>{
     let endPoint: string="/donateurs";
     return this.http.post<Donateur>(this.BackUrl + endPoint, donateur, { headers: this.requeteOption } );
@@ -36,7 +37,7 @@ export class UtilisateurService {
   }
 
   getCandidatByMail(mail: string, pass: string): Observable<Candidat> {
-    let endPoint: string="/candidats/getCandidatbyMail";
+    let endPoint: string="/getCandidatbyMail";
     let requeteParams = new HttpParams().set('mail', mail).set("pass", pass);
     return this.http.get<Candidat>(this.BackUrl + endPoint, {
       headers: this.requeteOption,
@@ -77,6 +78,29 @@ export class UtilisateurService {
     let endPoint : string ="/donateurs";
     return this.http.post<Donateur>(this.BackUrl + endPoint + `/${id}`, donateur,{headers: this.requeteOption});
   }
+
+  // Servicde candidat
+  createCandidat(candidat: Candidat): Observable<Candidat>{
+    let endPoint: string="/candidats";
+    return this.http.post<Candidat>(this.BackUrl + endPoint, candidat, { headers: this.requeteOption } );
+  }
+
+  deleteCandidatById(id:number){
+    let endpoint : string= "/candidats";
+    //let requeteParams = new HttpParams().set('id', id);
+    return this.http.delete(this.BackUrl + endpoint + `/${id}`,{headers: this.requeteOption});
+  }
+
+  updateCandidat(id: number, candidat : Candidat): Observable<Candidat>{
+    let endPoint : string ="/candidats";
+    return this.http.post<Candidat>(this.BackUrl + endPoint + `/${id}`, candidat,{headers: this.requeteOption});
+  }
+
+  getCandidatById(id:number): Observable<Candidat> {
+    let endPoint: string="/candidats";
+    return this.http.get<Candidat>(this.BackUrl + endPoint + `/${id}`,{headers: this.requeteOption});
+  }
+
 
   reset() {
     localStorage.setItem("role", "");

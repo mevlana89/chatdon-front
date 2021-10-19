@@ -19,6 +19,9 @@
       <span *ngIf="!isVisiteur">
         <span *ngIf="isCandidat">
           Hello {{ profilCandidat?.prenom }}
+          <span>
+            <a routerLink='/candidat'><button mat-raised-button color="warn" >Hello {{ profilCandidat?.prenom }}</button></a>
+          </span>
         </span>
         <span *ngIf="isDonateur">
           <span>
