@@ -8,6 +8,7 @@ import { CandidatComponent } from './utilisateur/candidat/candidat.component';
 import { CandidatureComponent } from './candidature/candidature.component';
 import { MesChatsComponent } from './utilisateur/donateur/mes-chats/mes-chats.component';
 import { DonateurComponent } from './utilisateur/donateur/donateur.component';
+import { SuggestionChatsComponent } from './utilisateur/candidat/suggestion-chats/suggestion-chats.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,10 @@ const routes: Routes = [
   {
     path: 'mesChats',
     component: MesChatsComponent,
+  },
+  {
+    path: 'suggestions',
+    component: SuggestionChatsComponent,
   },
 
   {
