@@ -79,7 +79,7 @@ export class UtilisateurService {
     return this.http.post<Donateur>(this.BackUrl + endPoint + `/${id}`, donateur,{headers: this.requeteOption});
   }
 
-  // Servicde candidat
+  // Services candidat
   createCandidat(candidat: Candidat): Observable<Candidat>{
     let endPoint: string="/candidats";
     return this.http.post<Candidat>(this.BackUrl + endPoint, candidat, { headers: this.requeteOption } );
