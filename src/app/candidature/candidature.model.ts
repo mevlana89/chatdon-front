@@ -1,4 +1,4 @@
-// import { Chat } from "../chat/Chat";
+import { Chat } from "../chat/Chat";
 import { ChatLight } from "../shared/liste-chat-light/chat-light/chat-light";
 
 export interface Candidature{

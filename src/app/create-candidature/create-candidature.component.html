@@ -1,0 +1,27 @@
+<!-- <p>create-candidature works!</p> -->
+<h1>Candidature pour le chat : </h1>
+<form (ngSubmit)="onSubmit()" [formGroup]="createCandidatureForm" #myForm="ngForm">
+    <div>
+        Form submitted ? {{myForm.submitted}}
+        Form valid ? {{createCandidatureForm.valid}}
+        Form invalid ? {{createCandidatureForm.valid}}
+      </div>
+    
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Référence chat</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Message</mat-label>
+            <textarea  matInput cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="4"> 
+            </textarea>
+        </mat-form-field>
+    </div>
+    <button mat-raised-button>Submit</button>
+</form>

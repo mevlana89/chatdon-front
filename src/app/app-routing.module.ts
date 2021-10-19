@@ -7,6 +7,7 @@ import { FicheChatComponent } from './chat/fiche-chat/fiche-chat.component';
 import { CandidatComponent } from './utilisateur/candidat/candidat.component';
 import { CandidatureComponent } from './candidature/candidature.component';
 import { MesChatsComponent } from './utilisateur/donateur/mes-chats/mes-chats.component';
+import { CreateCandidatureComponent } from './create-candidature/create-candidature.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path:'candidatures',
     component:CandidatureComponent,
+  },
+  {
+    path:'createcandidature',
+    component:CreateCandidatureComponent,
   },
   {
     path: '',
