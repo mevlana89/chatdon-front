@@ -21,9 +21,9 @@ export class CandidatComponent implements OnChanges {
     console.log('top chien : ', this.sociableChienC);
     this.createCandidatForm.get('typeHebergement')?.setValue(this.typeHebergementC);
     this.createCandidatForm.get('surfaceHebergement')?.setValue(this.surfaceHebergementC);
-    this.createCandidatForm.get('presenceJardin')?.setValue(this.presenceJardinC);
-    this.createCandidatForm.get('sociableChat')?.setValue(this.sociableChatC);
-    this.createCandidatForm.get('sociableChien')?.setValue(this.sociableChienC);
+    this.createCandidatForm.get('presenceJardin')?.setValue( (this.presenceJardinC == true ? 'true' : 'false') );
+    this.createCandidatForm.get('sociableChat')?.setValue( (this.sociableChatC == true ? 'true' : 'false') );
+    this.createCandidatForm.get('sociableChien')?.setValue( (this.sociableChienC == true ? 'true' : 'false' ));
     this.createCandidatForm.get('ageBenjamin')?.setValue(this.ageBenjaminC);
   }
 
