@@ -18,7 +18,7 @@ import { utilisateur } from '../utilisateur';
 })
 export class DonateurComponent implements OnInit {
 
-  hide = true;
+  hide = true; // Pour masquer le mot de passe
   private baseUrl = environment.wsRootUrl;
   readonly radioFormControl = new FormControl(null);
   chatInit : Chat[] = [];
@@ -26,15 +26,15 @@ export class DonateurComponent implements OnInit {
   candidat : Candidat | undefined;
   idConnected: number = 0;
   roleConnectedSave: string ='';
+  modeEdition: boolean = false; // pour masquer le bouton supprimer si pas donateur/candidat encore créé
 
+  // Variables "P"arent (=le donateur) pour l'envoi vers "C"hild (= le candidat)
   typeHebergementP : string | undefined;
   surfaceHebergementP : number=0;
   presenceJardinP : boolean | undefined;
   sociableChatP : boolean | undefined;
   sociableChienP : boolean | undefined;
   ageBenjaminP  : number=0;
-
-  // donateur :Donateur = new Donateur();
 
   constructor(private fb: FormBuilder, public utilisateurService: UtilisateurService, public router: Router) { }
 
@@ -124,7 +124,8 @@ export class DonateurComponent implements OnInit {
     console.log('donateur form :' , this.createDonateurForm.value);
     console.log('id : ' , this.createDonateurForm.value.id);
     // JSon width CreateDonateurForm (parent) and candidatForm(child)
-    if(this.createDonateurForm.value.id !>0) {
+    if(this.createDonateurForm.value.id == null) {
+      console.log ('id null');
       this.createDonateurForm.value.id =0;
     }
     this.candidat = {
@@ -185,6 +186,7 @@ export class DonateurComponent implements OnInit {
     let roleConnected : string | null = localStorage.getItem('role');
     console.log(' getConnected : ', roleConnected);
     if ( roleConnected !=null && roleConnected == DONATEUR){
+        this.modeEdition = true;
         this.roleConnectedSave = roleConnected;
         let donateurString :string | null = localStorage.getItem(DONATEUR);
         if (donateurString !=null ) {
@@ -198,6 +200,7 @@ export class DonateurComponent implements OnInit {
     if ( roleConnected !=null && roleConnected == CANDIDAT){
       let candidatString :string | null = localStorage.getItem(CANDIDAT);
       if (candidatString !=null ) {
+        this.modeEdition = true;
         this.roleConnectedSave = roleConnected;
         let candidat : Candidat = JSON.parse( candidatString );
         this.idConnected = candidat.id;
@@ -227,6 +230,7 @@ export class DonateurComponent implements OnInit {
             localStorage.setItem("role", "");
             localStorage.setItem(DONATEUR,"");
             localStorage.setItem(CANDIDAT, "");
+            this.modeEdition = false;
             // retour à l'acceuil
             this.router.navigate(['/acceuil']);
           },
@@ -246,6 +250,7 @@ export class DonateurComponent implements OnInit {
             localStorage.setItem("role", "");
             localStorage.setItem(DONATEUR,"");
             localStorage.setItem(CANDIDAT, "");
+            this.modeEdition = false;
             // retour à l'acceuil
             this.router.navigate(['/acceuil']);
           },
@@ -255,6 +260,12 @@ export class DonateurComponent implements OnInit {
     }
 
 
+  }
+
+  // Annuler l'action en cours
+  cancelCreateOrEdit() {
+    console.log("cancel ! retour accueil")
+    this.router.navigate(['/']);
   }
 
   // Gestion des Forms
