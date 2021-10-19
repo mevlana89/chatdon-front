@@ -110,8 +110,9 @@
 
     <mat-card-actions appearance="fill">
       <button mat-stroked-button color="primary" type="submit" (click)="addUpdateDonateur()" *ngIf=" radioFormControl.value !== '2' "> Enregistrer </button>
-      <button mat-stroked-button color="primary" type="submit" (click)="deleteUtilisateur()"> Supprimer</button>
-      <button mat-stroked-button color="primary" type="submit" (click)="getIdConnected()"> Consulter</button>
+      <button mat-stroked-button color="primary" type="submit" (click)="deleteUtilisateur()" *ngIf="modeEdition"> Supprimer</button>
+      <button mat-stroked-button color="primary" type="submit" (click)="getIdConnected()" > Consulter</button>
+      <button mat-stroked-button color="primary" (click)="cancelCreateOrEdit()">Annuler</button>
     </mat-card-actions>
 
     </mat-card-content>
