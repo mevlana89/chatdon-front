@@ -28,17 +28,13 @@ export function forbidenExtensionValidator(forbidenExtension:string): ValidatorF
     }
   };
 }
-/*
+
 export function checkEqualityValidator(controlName1:string, controlName2:string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     // Get first control value
-    if (controlName1.length > 0 ) {
-      const value1 = control.get(controlName1).value;
-    } else {
-      const value1 = 'ko1';
-    }
-       // Get second control value
-    const value2 = control.get(controlName2).value;
+    const value1 = control.get(controlName1)!.value;
+    // Get second control value
+    const value2 = control.get(controlName2)!.value;
 
     if (!(value1 && value2 && value1 === value2)) {
       return { 'notEqual': { actual: value1, expected: value2 } };
@@ -47,4 +43,4 @@ export function checkEqualityValidator(controlName1:string, controlName2:string)
     }
   };
 }
-*/
+
