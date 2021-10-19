@@ -1,4 +1,5 @@
- import { PhotoChat } from "./PhotoChat";
+ import { Candidature } from "src/app/candidature/candidature.model";
+import { PhotoChat } from "./PhotoChat";
 
 export class ChatLight {
 
@@ -17,4 +18,7 @@ export class ChatLight {
     //sociableChien: boolean = false;
     // TODO : candidatures: Candidature[];
     lstPhotos: PhotoChat[] = [];
+    candidaturesEnCours: Candidature[] = [];
+    lstCandidaturesRefusees: Candidature[] = [];
+    lstCandidatures: Candidature[] = [];
 }

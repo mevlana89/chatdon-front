@@ -5,6 +5,7 @@ import { Donateur } from './donateur';
 import { Observable } from 'rxjs';
 import { Candidat } from './candidat';
 import { Chat } from '../chat/Chat';
+import { DONATEUR, CANDIDAT } from '../shared/listes';
 
 @Injectable({
   providedIn: 'root'
@@ -55,9 +56,32 @@ export class UtilisateurService {
     });
   }
 
+
   findAllCatsByDonatorId(idDonateur: number): Observable<any>
   {
-    return this.http.get<any>(`${this.BackUrl}` + "/donateurs/"+idDonateur+"/chats"); 
+    return this.http.get<any>(`${this.BackUrl}` + "/donateurs/"+idDonateur+"/chats");
+  }
+
+  getDonateurById(id:number): Observable<Donateur> {
+    let endPoint: string="/donateurs";
+    return this.http.get<Donateur>(this.BackUrl + endPoint + `/${id}`,{headers: this.requeteOption});
+  }
+
+  deleteDonateurById(id:number){
+    let endpoint : string= "/donateurs";
+    //let requeteParams = new HttpParams().set('id', id);
+    return this.http.delete(this.BackUrl + endpoint + `/${id}`,{headers: this.requeteOption});
+  }
+
+  updateDonateur(id: number, donateur : Donateur): Observable<Donateur>{
+    let endPoint : string ="/donateurs";
+    return this.http.post<Donateur>(this.BackUrl + endPoint + `/${id}`, donateur,{headers: this.requeteOption});
+  }
+
+  reset() {
+    localStorage.setItem("role", "");
+    localStorage.setItem(CANDIDAT, "");
+    localStorage.setItem(DONATEUR, "");
   }
 
 }

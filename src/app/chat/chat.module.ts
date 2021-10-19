@@ -2,21 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FicheChatComponent } from './fiche-chat/fiche-chat.component';
 import { SharedModule } from '../shared/shared.module';
-import { CreateChatComponent } from './create-chat/create-chat.component';
 import { EditChatComponent } from './edit-chat/edit-chat.component';
 import { EditFicheChatComponent } from './edit-fiche-chat/edit-fiche-chat.component';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 @NgModule({
   declarations: [
     FicheChatComponent,
-    CreateChatComponent,
     EditChatComponent,
     EditFicheChatComponent,
 
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+   MatCarouselModule.forRoot()
   ]
 })
 export class ChatModule { }

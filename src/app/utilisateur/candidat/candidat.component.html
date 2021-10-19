@@ -1,12 +1,13 @@
 <!-- <p>candidat works!</p> -->
 
-<form (ngSubmit)="onSubmit()" [formGroup]="createCandidatForm" #myForm="ngForm">
+<form class="form-container" (ngSubmit)="onSubmit()" [formGroup]="createCandidatForm" #myForm="ngForm">
   <div>
     Form submitted ? {{myForm.submitted}}
     Form valid ? {{createCandidatForm.valid}}
     Form invalid ? {{createCandidatForm.valid}}
   </div>
-  <div>
+  <mat-card-content>
+
     <!-- <label>type Hebergement</label> -->
     <mat-form-field appearance="fill">
       <mat-label>type Hebergement</mat-label>
@@ -19,58 +20,42 @@
       <!-- <mat-error *ngIf="createCandidatForm.hasError('required')">Please choose an animal</mat-error> -->
       <!-- <mat-hint>{{hebergement.value?.sound}}</mat-hint> -->
     </mat-form-field>
-  </div>
-  <div>
+
     <mat-form-field appearance="fill">
       <mat-label>surface</mat-label>
-      <input matInput type="number" placeholder="Ex. 49" formControlName="surfaceHebergement" min="9">
+      <input matInput type="number" placeholder="Ex. 49" formControlName="surfaceHebergement">
       <span matSuffix>m²</span>
       <!-- <mat-error *ngIf="surfaceHebergement.invalid">Min size: 10px</mat-error> -->
     </mat-form-field>
-  </div>
-  <div>
+
     <mat-radio-group aria-label="Select an option" formControlName="presenceJardin">
       <mat-label>Jardin : </mat-label>
-      <mat-radio-button value="1">Oui</mat-radio-button>
-      <mat-radio-button value="2">Non</mat-radio-button>
+      <mat-radio-button color="primary" value="1">Oui</mat-radio-button>
+      <mat-radio-button color="primary" value="2">Non</mat-radio-button>
     </mat-radio-group>
-  </div>
-  <div>
+    <div></div>
+
     <mat-radio-group aria-label="Select an option" formControlName="sociableChat">
       <mat-label>Autre(s) chat(s) : </mat-label>
-      <mat-radio-button value="1">Oui</mat-radio-button>
-      <mat-radio-button value="2">Non</mat-radio-button>
+      <mat-radio-button color="primary" value="1">Oui</mat-radio-button>
+      <mat-radio-button color="primary" value="2">Non</mat-radio-button>
     </mat-radio-group>
-  </div>
-  <div>
+    <div></div>
+
     <mat-radio-group aria-label="Select an option" formControlName="sociableChien">
       <mat-label>Chien(s) : </mat-label>
-      <mat-radio-button value="1">Oui</mat-radio-button>
-      <mat-radio-button value="2">Non</mat-radio-button>
+      <mat-radio-button color="primary" value="1">Oui</mat-radio-button>
+      <mat-radio-button color="primary" value="2">Non</mat-radio-button>
     </mat-radio-group>
-  </div>
-  <div>
-    <label>Âge du plus jeune enfant</label>
-    <mat-form-field appearance="fill">
+    <div></div>
 
-      <mat-label>laisser vide si pas d'enfant</mat-label>
+    <mat-form-field appearance="fill">
+      <mat-label>Âge du plus jeune enfant</mat-label>
       <input matInput type="number" placeholder="Ex. 12" min="0" max="99">
       <span matSuffix>ans</span>
+      <mat-hint>laisser vide si pas d'enfant</mat-hint>
       <!-- <mat-error *ngIf="surfaceHebergement.invalid">Min size: 10px</mat-error> -->
     </mat-form-field>
-  </div>
-</form>
 
-<h1>Test form</h1>
-<form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Email</mat-label>
-    <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
-    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Please enter a valid email address
-    </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      Email is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
+</mat-card-content>
 </form>

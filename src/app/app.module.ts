@@ -17,9 +17,6 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { CandidatureComponent } from './candidature/candidature.component';
 import { CreateCandidatureComponent } from './create-candidature/create-candidature.component';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +36,7 @@ import { CreateCandidatureComponent } from './create-candidature/create-candidat
     HttpClientModule,
     SharedModule,
     ChatModule,
-    UtilisateurModule
+    UtilisateurModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
