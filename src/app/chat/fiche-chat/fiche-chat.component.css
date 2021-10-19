@@ -48,10 +48,6 @@ mat-card {
   margin: 10px;
 }
 
-::ng-deep.mat-checkbox-checked.mat-accent.mat-checkbox-disabled {
-  color: black;
-}
-
 .intitule {
   color:blueviolet;
   font-size: medium;

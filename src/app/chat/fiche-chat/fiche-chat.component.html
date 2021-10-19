@@ -28,7 +28,7 @@
   </div>
 <mat-card>
   <mat-card-title><mat-icon>assignment</mat-icon> Fiche de {{ leChat.nom }}</mat-card-title>
-  <mat-grid-list cols="2" rowHeight="30px">
+  <mat-grid-list cols="2" rowHeight="35px">
     <mat-grid-tile>
       <mat-card-content><span class="intitule">Catégorie d age : </span><span class="contenu"> {{ leChat.categorieAge }}</span></mat-card-content>
     </mat-grid-tile>
@@ -57,13 +57,13 @@
   <mat-card-title><mat-icon>people</mat-icon> Sociabilité</mat-card-title>
   <mat-grid-list cols="3" rowHeight="30px">
     <mat-grid-tile>
-        <div><mat-checkbox color="primary" [checked]=leChat.sociableEnfant disabled ><mat-icon>child_care</mat-icon> Adapté aux enfants </mat-checkbox></div>
+        <div><mat-checkbox color="primary" [checked]=leChat.sociableEnfant (click)="$event.preventDefault()" ><mat-icon>child_care</mat-icon> Adapté aux enfants </mat-checkbox></div>
       </mat-grid-tile>
       <mat-grid-tile>
-        <div><mat-checkbox color="primary" [checked]=leChat.sociableChien disabled >Accepte les chiens </mat-checkbox></div>
+        <div><mat-checkbox color="primary" [checked]=leChat.sociableChien (click)="$event.preventDefault()" >Accepte les chiens </mat-checkbox></div>
       </mat-grid-tile>
       <mat-grid-tile>
-        <div><mat-checkbox color="primary" [checked]=leChat.sociableChat disabled >Accepte les autres chats </mat-checkbox></div>
+        <div><mat-checkbox color="primary" [checked]=leChat.sociableChat (click)="$event.preventDefault()" >Accepte les autres chats </mat-checkbox></div>
     </mat-grid-tile>
   </mat-grid-list>
 </mat-card>
