@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,15 +8,11 @@ import { Router } from '@angular/router';
 })
 export class CreateCandidatureComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  createCandidatureForm = this.fb.group({});
-  onSubmit() {
-    // Get form value as JSON object
-    console.log('oderForm submitted : ', this.createCandidatureForm.value);
-  }
+  
 
 }
