@@ -60,6 +60,10 @@ const routes: Routes = [
     path: 'mesChats',
     component: MesChatsComponent,
   },
+  {
+    path: 'suggestions',
+    component: SuggestionChatsComponent,
+  },
 
   {
     path: '',
