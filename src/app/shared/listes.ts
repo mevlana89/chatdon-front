@@ -128,5 +128,8 @@
     'York chocolat'
   ]
 
+  export const STATUS_ENCOURS: string='En cours';
+  export const STATUS_ANNULE : string='Annulée';
+
 
 

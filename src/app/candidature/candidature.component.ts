@@ -3,6 +3,7 @@ import { Candidature } from './candidature.model';
 import { CandidatureService } from './candidature.service';
 
 
+
 @Component({
   selector: 'app-candidature',
   template: '*ngIf="true" Annuler ',

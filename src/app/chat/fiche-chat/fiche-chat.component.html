@@ -87,4 +87,10 @@
   <span *ngIf="isDonateurDuChat">
     <button mat-raised-button color="warn" (click)="editChat()">Editer la fiche</button>
   </span>
+  <span *ngIf="isCandidat">
+    <button mat-raised-button type="button" color="warn" (click)="postuler()">Postuler</button>
+  </span>
+  <span *ngIf="isCandidatDuChat">
+    <button mat-raised-button type="button" color="warn" (click)="annulerCandidature()">Annuler ma candidature</button>
+  </span>
 </mat-toolbar>
