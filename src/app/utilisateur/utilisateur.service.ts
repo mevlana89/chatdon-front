@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Donateur } from './donateur';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Candidat } from './candidat';
 import { Chat } from '../chat/Chat';
 import { DONATEUR, CANDIDAT } from '../shared/listes';
@@ -14,16 +14,38 @@ export class UtilisateurService {
 
   private BackUrl: string =environment.wsRootUrl;
 
+  isCandidat: boolean = false;
+  isDonateur: boolean = false;
+
   requeteOption:HttpHeaders = new HttpHeaders().set('Access-Control-Allow-Origin','*');
 
   constructor(private http: HttpClient) {
    // this.requeteOption = new HttpHeaders().set('Access-Control-Allow-Origin','*');
+   this.logginChange.subscribe(value => {
+     console.log("dans logginchange subscribe du service : " + value);
+     this.logginChange.next(value);
+   });
   }
 
   // services donateur
   createDonateur(donateur: Donateur): Observable<Donateur>{
     let endPoint: string="/donateurs";
     return this.http.post<Donateur>(this.BackUrl + endPoint, donateur, { headers: this.requeteOption } );
+  }
+
+  public logginChange: Subject<string> = new Subject<string>();
+
+  setLogAs(isCandidat: boolean, isDonateur: boolean) {
+    console.log("setLogAs dans le service");
+    this.isCandidat = isCandidat;
+    this.isDonateur = isDonateur;
+    if (isCandidat) {
+      this.logginChange.next(CANDIDAT);
+    } else if (isDonateur) {
+      this.logginChange.next(DONATEUR);
+    } else {
+      this.logginChange.next("");
+    }
   }
 
   getDonateurByMail(mail: string, pass: string): Observable<Donateur> {

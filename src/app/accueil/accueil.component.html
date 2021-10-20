@@ -1,7 +1,14 @@
-<!-- <p>accueil works!</p> -->
 
 <div class="body">
-    <P>Bienvenu sur le site "Chat'don", vous pouvez créer un compte donneur ou candidat …..</P>
+  <div *ngIf="isVisiteur">
+    <P>Bienvenue sur le site "Chat'don", vous pouvez créer un compte donateur ou candidat.</P>
+  </div>
+  <div *ngIf="isCandidat">
+    <P>Bienvenue sur le site "Chat'don", vous pouvez chercher parmi tous nos chats celui qui vous correspond le mieux</P>
+  </div>
+  <div *ngIf="isDonateur">
+    <P>Bienvenue sur le site "Chat'don", vous pouvez enregistrer le ou les chats que vous souhaitez donner.</P>
+  </div>
 </div>
 
 
@@ -15,7 +22,7 @@
 <div *ngIf="displaySearch">
   <form (ngSubmit)="orderForm.valid && rechercheChats()" [formGroup]="orderForm" #myForm="ngForm">
 
-  <!--  Formulaire sans MATERIAL 
+  <!--  Formulaire sans MATERIAL
     <div>
       Form submitted ? {{myForm.submitted}}
       Form valid ? {{orderForm.valid}}
@@ -32,7 +39,7 @@
     <div>
       <label for="sexe-filter">sexe</label>
       <input name="sexe-filter" type="text" formControlName="sexe">
-    </div> 
+    </div>
 
   </select>
   -->
@@ -90,7 +97,7 @@
     <mat-grid-tile>
       <mat-form-field appearance="fill">
         <mat-label>Sexe : </mat-label>
-        <mat-select formControlName="sexe"> 
+        <mat-select formControlName="sexe">
           <mat-option value="" ></mat-option>
           <mat-option *ngFor="let sex of Sexes" [value]="sex">
           {{ sex }}
@@ -102,7 +109,7 @@
     <mat-grid-tile>
       <mat-form-field appearance="fill">
         <mat-label>Taille : </mat-label>
-        <mat-select formControlName="taille"> 
+        <mat-select formControlName="taille">
           <mat-option value="" ></mat-option>
           <mat-option *ngFor="let taille of Tailles" [value]="taille">
           {{ taille }}
@@ -114,7 +121,7 @@
     <mat-grid-tile>
       <mat-form-field appearance="fill">
         <mat-label>Region : </mat-label>
-        <mat-select formControlName="zoneGeo"> 
+        <mat-select formControlName="zoneGeo">
           <mat-option value="" ></mat-option>
           <mat-option *ngFor="let region of Regions" [value]="region">
           {{ region }}
@@ -126,7 +133,7 @@
     <mat-grid-tile>
       <mat-form-field appearance="fill">
         <mat-label>Adapté aux enfants : </mat-label>
-        <mat-select formControlName="sociableEnfant"> 
+        <mat-select formControlName="sociableEnfant">
           <mat-option value=""></mat-option>
           <mat-option value="1">Oui</mat-option>
           <mat-option value="0">Non</mat-option>
@@ -137,18 +144,18 @@
     <mat-grid-tile>
       <mat-form-field appearance="fill">
         <mat-label>Accepte les chiens : </mat-label>
-        <mat-select formControlName="sociableChien"> 
+        <mat-select formControlName="sociableChien">
           <mat-option value=""></mat-option>
           <mat-option value="1">Oui</mat-option>
           <mat-option value="0">Non</mat-option>
         </mat-select>
       </mat-form-field>
     </mat-grid-tile>
-    
+
     <mat-grid-tile>
       <mat-form-field appearance="fill">
         <mat-label>Accepte les autres chats : </mat-label>
-        <mat-select formControlName="sociableChat"> 
+        <mat-select formControlName="sociableChat">
           <mat-option value=""></mat-option>
           <mat-option value="1">Oui</mat-option>
           <mat-option value="0">Non</mat-option>
@@ -159,7 +166,7 @@
   </mat-grid-list>
   <div  class="center">
     <button mat-stroked-button color="primary" type="submit">Lancer la recherche</button>
-  </div> 
+  </div>
   </form>
 </div>
 </div>

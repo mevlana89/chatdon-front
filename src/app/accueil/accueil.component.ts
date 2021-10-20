@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterDto } from '../shared/liste-chat-light/FilterDto';
-import { TAILLES, SEXES, RACES, CATEGORIES_AGE, PELAGES, CARACTERES, REGIONS } from '../shared/listes';
+import { TAILLES, SEXES, RACES, CATEGORIES_AGE, PELAGES, CARACTERES, REGIONS, DONATEUR, CANDIDAT } from '../shared/listes';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { UtilisateurService } from '../utilisateur/utilisateur.service';
 
 @Component({
   selector: 'app-accueil',
@@ -10,7 +11,7 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, V
 })
 export class AccueilComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private utilisateurService: UtilisateurService) { }
 
   public displaySearch = false;
 
@@ -30,33 +31,48 @@ export class AccueilComponent implements OnInit {
 
   filterDto: FilterDto = new FilterDto();
 
+  isCandidat: boolean = false;
+  isDonateur: boolean = false;
+  isVisiteur: boolean = false;
+
   public Tailles = TAILLES;
-
   public Sexes = SEXES;
-
   public Races = RACES;
-
   public Cat_Age = CATEGORIES_AGE;
-
   public Pelages = PELAGES;
-
   public Caracteres = CARACTERES;
-
   public Regions = REGIONS;
 
   ngOnInit(): void {
-/**
-        // get Observable from FormGroup
-        this.orderForm.valueChanges
-        // listen to value change
-        .subscribe(value => {
-          console.log('orderForm value changes : ', value);
-        });
-         */
-        this.filterDto = this.orderForm.value;
-        //console.log("this.filterDto.race: ", this.filterDto.race);
+    this.utilisateurService.logginChange.subscribe(data => {
+      console.log("logginChange detecté depuis accueil");
+      this.gestionLoggin()
+    } );
+    this.filterDto = this.orderForm.value;
+    this.gestionLoggin();
+  }
+
+  gestionLoggin() {
+    let role: string | null = localStorage.getItem('role');
+    if (role == DONATEUR) {
+      console.log("Hello donateur");
+      this.isCandidat = false;
+      this.isDonateur = true;
+      this.isVisiteur = false;
+    } else if (role == CANDIDAT) {
+      console.log("Hello candidat");
+      this.isCandidat = true;
+      this.isDonateur = false;
+      this.isVisiteur = false;
+    } else {
+      console.log("Hello visiteur");
+      this.isCandidat = false;
+      this.isDonateur = false;
+      this.isVisiteur = true;
+    }
 
   }
+
 
   rechercheChats() {
     this.filterDto = this.orderForm.value;
