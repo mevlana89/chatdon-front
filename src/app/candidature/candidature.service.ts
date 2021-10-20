@@ -44,6 +44,10 @@ export class CandidatureService {
     return this.http.delete(this.BackUrl + endpoint + `/${idCandidature}`,{headers: this.requeteOption});
   }
 
+  public updateCandidatureDto(candidature: CreateCandidature):Observable<CreateCandidature> {
+    let endpoint : string= "/editCandidature";
+    return this.http.post<CreateCandidature>(this.BackUrl + endpoint, candidature ,{headers: this.requeteOption});
+  }
 
-  
+
 }

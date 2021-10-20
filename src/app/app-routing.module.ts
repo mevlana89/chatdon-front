@@ -10,6 +10,8 @@ import { CreateCandidatureComponent } from './create-candidature/create-candidat
 import { DonateurComponent } from './utilisateur/donateur/donateur.component';
 import { SuggestionChatsComponent } from './utilisateur/candidat/suggestion-chats/suggestion-chats.component';
 import { ConsultCandidatComponent } from './consult-candidat/consult-candidat.component';
+import { EditDonateurComponent } from './utilisateur/edit-donateur/edit-donateur.component';
+
 
 
 const routes: Routes = [
@@ -35,9 +37,10 @@ const routes: Routes = [
   },
   {
     path: 'candidat',
-    component: CandidatComponent,
+    component: DonateurComponent,
   },
   {
+
     path: 'candidat/:id',
     component: ConsultCandidatComponent,
   },
@@ -53,6 +56,9 @@ const routes: Routes = [
   {
     path:'candidatures',
     component:CandidatureComponent,
+  },
+  {path:'editDonateur/:id',
+  component:EditDonateurComponent,
   },
   {
     path:'createcandidature',

@@ -91,6 +91,27 @@ export class ListeChatLightService {
   {
     let parametres = new HttpParams();
 
+    if (filterDTO.categorieAge != undefined)
+    {
+      parametres = parametres.append('categorieAge', filterDTO.categorieAge);
+    }
+    if (filterDTO.race != undefined)
+    {
+      parametres = parametres.append('race', filterDTO.race);
+    }
+    if (filterDTO.sexe != undefined)
+    {
+      parametres = parametres.append('sexe', filterDTO.sexe);
+    }
+    if (filterDTO.pelage != undefined)
+    {
+      parametres = parametres.append('pelage', filterDTO.pelage);
+    }
+    if (filterDTO.zoneGeo != undefined)
+    {
+      parametres = parametres.append('zoneGeo', filterDTO.zoneGeo);
+    }
+
     return this.http.get<any>(`${this.baseUrl}` + "/candidats/"+ idCandidat +"/suggestions", { params: parametres } );
   }
 }
