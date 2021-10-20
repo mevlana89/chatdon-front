@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Chat } from '../Chat';
 import { ChatService } from '../chat.service';
-import { DONATEUR, CANDIDAT } from 'src/app/shared/listes';
+import { DONATEUR, CANDIDAT,  STATUS_ENCOURS } from 'src/app/shared/listes';
 import { Donateur } from 'src/app/utilisateur/donateur';
 import { Candidat } from 'src/app/utilisateur/candidat';
+import { CandidatureService } from 'src/app/candidature/candidature.service';
+import { Candidature } from 'src/app/candidature/candidature.model';
+import { CreateCandidature } from 'src/app/candidature/candidature';
+
 
 @Component({
   selector: 'app-fiche-chat',
@@ -12,8 +16,9 @@ import { Candidat } from 'src/app/utilisateur/candidat';
   styleUrls: ['./fiche-chat.component.css']
 })
 export class FicheChatComponent implements OnInit {
+ 
 
-  constructor(private serviceChat: ChatService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private serviceCandidature:CandidatureService,private serviceChat: ChatService, private route: ActivatedRoute, private router: Router) { }
 
   leChat: Chat = new Chat();
   chatId: number = 0;
@@ -21,9 +26,11 @@ export class FicheChatComponent implements OnInit {
   isDonateurDuChat: boolean = false;
   isCandidatDuChat: boolean = false;
   isCandidat: boolean = false;
+  isOldCandidatDuChat:boolean=false;
 
   donateur: Donateur = new Donateur;
   candidat: Candidat = new Candidat;
+  idCandidature : number=0;
 
   ngOnInit(): void {
 
@@ -52,8 +59,28 @@ export class FicheChatComponent implements OnInit {
           let stringCandidat: string | null = localStorage.getItem(CANDIDAT);
           if (stringCandidat != null) {
             this.candidat = JSON.parse(stringCandidat);
-            // TODO: tester si candidature déjà faite, ou si juste candidat
-            // pour mettre soit isCandidatDuChat ou isCandidat à true
+            this.serviceCandidature.getAllCandidaturesDtoByCatId(this.leChat.id).subscribe(
+              data=>{
+                let candidatures:CreateCandidature[]=data;
+                 for (var candidature of candidatures){
+                   if (candidature.candidat.id==this.candidat.id){
+                     console.log("candidature candidat id = candidat id")
+                     if(candidature.status==STATUS_ENCOURS){
+                      console.log("statut en cours, idCandidature mis à " + candidature.id)
+                       this.isCandidatDuChat=true;
+                       this.idCandidature=candidature.id;
+                     }
+                     else{
+                      console.log("statut old, idCandidature not set");
+                       this.isOldCandidatDuChat=true;
+                     }
+                   }
+                 }
+                 if(this.isCandidatDuChat==false && this.isOldCandidatDuChat==false){
+                   this.isCandidat=true;
+                 }
+              }
+            )
           }
 
         }
@@ -67,5 +94,35 @@ export class FicheChatComponent implements OnInit {
   editChat() {
     this.router.navigate(['/updatechat/', this.leChat.id]);
   }
+  postuler(){
+    let candidature= new CreateCandidature();
+    candidature.chat=this.leChat;
+    candidature.status=STATUS_ENCOURS;
+    candidature.candidat=this.candidat;
+    this.serviceCandidature.createCandidature(candidature).subscribe(
+      data => {
+        console.log(data);
+        alert('Votre candidature a été enregistrée avec succès.');
+        this.isCandidat=false;
+        this.isCandidatDuChat=true;
+      }
+    );
+  }
+
+  annulerCandidature(){
+    console.log("annuler candidature" + this.idCandidature);
+    if (this.idCandidature >0){
+      this.serviceCandidature.deleteCandidatureById(this.idCandidature).subscribe(
+        data=>{
+          console.log(data);
+          alert('Votre candidature a été supprimée avec succès.');
+          this.isCandidat=true;
+          this.isCandidatDuChat=false;
+        }
+      )
+    }
+   
+  }
+
 
 }

@@ -6,5 +6,5 @@ export interface Candidature{
     id: number;
     chat:ChatLight;
     status:string;
-    candidat: Candidat;
+    candidat:Candidat ;
 }
