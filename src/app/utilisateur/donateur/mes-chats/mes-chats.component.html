@@ -7,25 +7,28 @@
             <div *ngFor="let chatLight of listeChatLight" class="catLight border">
                 <app-chat-light [chat]="chatLight"></app-chat-light>
                 <div class="margin">
-                    <div *ngIf="chatLight.candidaturesEnCours; else pasDeCandidatureEnCours">
+                    <div *ngIf="chatLight.candidaturesEnCours">
                         <div *ngFor="let candidatureEnCours of chatLight.candidaturesEnCours">
                             <p>Candidature actuelle : <a [routerLink]="['/candidat/', candidatureEnCours.candidat.id]">
                                     {{ candidatureEnCours.candidat.prenom }} {{ candidatureEnCours.candidat.nom }}</a>
                             </p>
                         </div>
                     </div>
-                    <ng-template #pasDeCandidatureEnCours>
-                        <div>Vous n'avez pas de candidature en cours</div>
-                    </ng-template>
+                    <div *ngIf="!chatLight.candidaturesEnCours.length">
+                        <p>Vous n'avez pas de candidature en cours</p>
+                    </div>
 
-                    <div *ngIf="chatLight.lstCandidaturesRefusees; else pasDeCandidatureRefuse">
+                    <div *ngIf="chatLight.lstCandidaturesRefusees">
                         Candidature(s) refusée(s) :
                         <div *ngFor="let candidaturesRefusees of chatLight.lstCandidaturesRefusees">
                             <p> - {{ candidaturesRefusees.candidat.prenom }} {{ candidaturesRefusees.candidat.nom }}</p>
                         </div>
                     </div>
+                    <div *ngIf="!chatLight.lstCandidaturesRefusees.length">
+                        Vous n'avez pas de candidature refusée.
+                    </div>
                     <ng-template #pasDeCandidatureRefuse>
-                        <div>Vous n'avez pas de candidature refusée</div>
+                        <div></div>
                     </ng-template>
                 </div>
             </div>
