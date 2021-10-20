@@ -131,7 +131,13 @@ export class FicheChatComponent implements OnInit {
         }
       )
     }
+  }
 
+  donnerChat(){
+    this.serviceChat.donnerChat(this.chatId).subscribe(x => {
+      alert('Nous vous remercions de la donation, le chat a été retiré de notre base de donnée.');
+      this.router.navigate(['/mesChats']);
+    });
   }
 
   refuserCandidature() {
