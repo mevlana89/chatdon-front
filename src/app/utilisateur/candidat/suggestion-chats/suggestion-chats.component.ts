@@ -1,9 +1,10 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ChatLight } from 'src/app/shared/liste-chat-light/chat-light/chat-light';
 import { FilterDto } from 'src/app/shared/liste-chat-light/FilterDto';
 import { ListeChatLightService } from 'src/app/shared/liste-chat-light/liste-chat-light.service';
-import { CANDIDAT } from 'src/app/shared/listes';
+import { CANDIDAT, CARACTERES, CATEGORIES_AGE, PELAGES, RACES, REGIONS, SEXES, TAILLES } from 'src/app/shared/listes';
 import { Candidat } from '../../candidat';
 
 @Component({
@@ -11,20 +12,37 @@ import { Candidat } from '../../candidat';
   templateUrl: './suggestion-chats.component.html',
   styleUrls: ['./suggestion-chats.component.css']
 })
-export class SuggestionChatsComponent implements OnInit, OnChanges {
+export class SuggestionChatsComponent implements OnInit{
 
-  filterDto: FilterDto = new FilterDto();
+  public displaySearch = false;
+
+      // Declare all controls with validation rules
+      orderForm = this.fb.group({
+        categorieAge: ['',/*Validators.required*/],
+        race: ['', [/*Validators.required*/]],
+        sexe: ['', [/*Validators.required*/]],
+        pelage: ['', [/*Validators.required*/]],
+        zoneGeo: ['', [/*Validators.required*/]]
+      });
+
+      public Sexes = SEXES;
+      public Races = RACES;
+      public Cat_Age = CATEGORIES_AGE;
+      public Pelages = PELAGES;
+      public Regions = REGIONS;
+
+  // filterDto: FilterDto = new FilterDto();
   
   listeChatLight: ChatLight[] = [];
 
   candidat: any = Candidat;
 
-  constructor(private servicelisteChat : ListeChatLightService,private router: Router, private route: ActivatedRoute) { }
-  ngOnChanges(changes: SimpleChanges): void {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.servicelisteChat.getSuggestCatsByCandidatId(this.candidat.id, this.filterDto).subscribe( data => { console.log (this.listeChatLight = data) })
-  });
-  }
+  constructor(private servicelisteChat : ListeChatLightService,private router: Router, private route: ActivatedRoute, private fb: FormBuilder) { }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   this.route.paramMap.subscribe((params: ParamMap) => {
+  //     this.servicelisteChat.getSuggestCatsByCandidatId(this.candidat.id, this.filterDto).subscribe( data => { console.log (this.listeChatLight = data) })
+  // });
+  // }
 
   ngOnInit(): void {
     let role: string | null = localStorage.getItem('role');
@@ -43,11 +61,18 @@ export class SuggestionChatsComponent implements OnInit, OnChanges {
        this.router.navigate(['/']);
        return;
     }
-  this.candidat.id = 1;
     
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.servicelisteChat.getSuggestCatsByCandidatId(this.candidat.id, this.filterDto).subscribe( data => { console.log (this.listeChatLight = data) })
+      this.servicelisteChat.getSuggestCatsByCandidatId(this.candidat.id, this.orderForm.value).subscribe( data => { console.log (this.listeChatLight = data) })
   });
+  }
+
+  searchDisplay(){
+    this.displaySearch = !this.displaySearch;
+  }
+
+  rechercheChats() {
+    this.servicelisteChat.getSuggestCatsByCandidatId(this.candidat.id, this.orderForm.value).subscribe( data => { console.log (this.listeChatLight = data) });
   }
 
 

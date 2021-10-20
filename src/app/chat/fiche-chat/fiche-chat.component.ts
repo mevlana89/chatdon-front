@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Chat } from '../Chat';
 import { ChatService } from '../chat.service';
-import { DONATEUR, CANDIDAT,  STATUS_ENCOURS } from 'src/app/shared/listes';
+import { DONATEUR, CANDIDAT,  STATUS_ENCOURS, STATUS_REFUSE } from 'src/app/shared/listes';
 import { Donateur } from 'src/app/utilisateur/donateur';
 import { Candidat } from 'src/app/utilisateur/candidat';
 import { CandidatureService } from 'src/app/candidature/candidature.service';
-import { Candidature } from 'src/app/candidature/candidature.model';
 import { CreateCandidature } from 'src/app/candidature/candidature';
 import { UtilisateurService } from '../../utilisateur/utilisateur.service';
 
@@ -28,6 +27,8 @@ export class FicheChatComponent implements OnInit {
   isCandidatDuChat: boolean = false;
   isCandidat: boolean = false;
   isOldCandidatDuChat:boolean=false;
+  isCandidatActifPourLeChat: boolean = false;
+  isAutreCandidatureActivePourLeChat: boolean = false;
 
   donateur: Donateur = new Donateur;
   candidat: Candidat = new Candidat;
@@ -42,48 +43,13 @@ export class FicheChatComponent implements OnInit {
       this.chatId = parseInt(params.get('id')!);
 
       this.serviceChat.getChatById(this.chatId).subscribe(data => {
-
         this.leChat = data;
         let role: string | null = localStorage.getItem('role');
         if (role == DONATEUR) {
-          console.log("profil donateur");
-          let stringDonateur: string | null = localStorage.getItem(DONATEUR);
-          if (stringDonateur != null) {
-            this.donateur = JSON.parse(stringDonateur);
-            if (this.donateur.id == this.leChat.donateur?.id) {
-              console.log("id identique, donateur du chat");
-              this.isDonateurDuChat = true;
-            }
-          }
+          this.ficheVueDonateur();
         }
         if (role == CANDIDAT) {
-          let stringCandidat: string | null = localStorage.getItem(CANDIDAT);
-          if (stringCandidat != null) {
-            this.candidat = JSON.parse(stringCandidat);
-            this.serviceCandidature.getAllCandidaturesDtoByCatId(this.leChat.id).subscribe(
-              data=>{
-                let candidatures:CreateCandidature[]=data;
-                 for (var candidature of candidatures){
-                   if (candidature.candidat.id==this.candidat.id){
-                     console.log("candidature candidat id = candidat id")
-                     if(candidature.status==STATUS_ENCOURS){
-                      console.log("statut en cours, idCandidature mis à " + candidature.id)
-                       this.isCandidatDuChat=true;
-                       this.idCandidature=candidature.id;
-                     }
-                     else{
-                      console.log("statut old, idCandidature not set");
-                       this.isOldCandidatDuChat=true;
-                     }
-                   }
-                 }
-                 if(this.isCandidatDuChat==false && this.isOldCandidatDuChat==false){
-                   this.isCandidat=true;
-                 }
-              }
-            )
-          }
-
+          this.ficheVueCandidat();
         }
       }, error => {
         console.log("Erreur recup chat ! ");
@@ -92,9 +58,71 @@ export class FicheChatComponent implements OnInit {
     });
   }
 
+  ficheVueCandidat() {
+    let stringCandidat: string | null = localStorage.getItem(CANDIDAT);
+    if (stringCandidat != null) {
+      this.candidat = JSON.parse(stringCandidat);
+      this.serviceCandidature.getAllCandidaturesDtoByCatId(this.leChat.id).subscribe(
+        data=>{
+          let candidatures:CreateCandidature[]=data;
+          let candidatureEncours: boolean = false;
+           for (var candidature of candidatures){
+             if (candidature.status == STATUS_ENCOURS) {
+               candidatureEncours = true;
+             }
+             if (candidature.candidat.id==this.candidat.id){
+               console.log("candidature candidat id = candidat id")
+               if(candidature.status==STATUS_ENCOURS){
+                console.log("statut en cours, idCandidature mis à " + candidature.id)
+                 this.isCandidatDuChat=true;
+                 this.idCandidature=candidature.id;
+               }
+               else{
+                console.log("statut old, idCandidature not set");
+                 this.isOldCandidatDuChat=true;
+               }
+             }
+           }
+           if(this.isCandidatDuChat==false && this.isOldCandidatDuChat==false){
+             if (candidatureEncours) {
+              this.isAutreCandidatureActivePourLeChat = true;
+             } else {
+              this.isCandidat=true;
+             }
+           }
+        }
+      )
+    }
+  }
+
+  ficheVueDonateur() {
+    console.log("profil donateur");
+    let stringDonateur: string | null = localStorage.getItem(DONATEUR);
+    if (stringDonateur != null) {
+      this.donateur = JSON.parse(stringDonateur);
+      if (this.donateur.id == this.leChat.donateur?.id) {
+        console.log("id identique, donateur du chat");
+        this.isDonateurDuChat = true;
+        this.serviceCandidature.getAllCandidaturesDtoByCatId(this.leChat.id).subscribe(
+          data=>{
+            let candidatures:CreateCandidature[]=data;
+            for (var candidature of candidatures){
+              if (candidature.status==STATUS_ENCOURS) {
+                this.isCandidatActifPourLeChat = true;
+                this.candidat = candidature.candidat;
+                console.log("candidat actif trouvé : " + this.candidat.id + " nom " + this.candidat.nom);
+                this.idCandidature = candidature.id
+              }
+            }
+        });
+      }
+    }
+  }
+
   editChat() {
     this.router.navigate(['/updatechat/', this.leChat.id]);
   }
+
   postuler(){
     let candidature= new CreateCandidature();
     candidature.chat=this.leChat;
@@ -122,8 +150,8 @@ export class FicheChatComponent implements OnInit {
         }
       )
     }
-
   }
+
 
   voirDonateur(){
     console.log('voirDonateur - le candidat', this.candidat);
@@ -138,27 +166,29 @@ export class FicheChatComponent implements OnInit {
           this.router.navigate(['/editDonateur', this.leChat.donateur?.id]);
         }
       )
-
     }
   }
 
-
-  createChat() {
-    console.log("debut create");
-    if (this.leChat.nom.length == 0){
-      console.log("chat sans nom... sortie");
-      return;
-    }
-    console.log(this.leChat.nom + ", " + this.leChat.caractere + ", " + this.leChat.race);
-    this.serviceChat.createChat(this.leChat).subscribe(
-    rsp => {
-      console.log("retour service => id : " + rsp.id + " nom : " + rsp.nom + ", " + rsp.caractere + ", " + rsp.race);
-      this.router.navigate(['/fichechat/', rsp.id]);
-    },
-    error => {
-      console.log(" createChat error!");
-      console.log(error);
+ donnerChat(){
+    this.serviceChat.donnerChat(this.chatId).subscribe(x => {
+      alert('Nous vous remercions de la donation, le chat a été retiré de notre base de donnée.');
+      this.router.navigate(['/mesChats']);
     });
   }
 
+
+  refuserCandidature() {
+    console.log("refuser candidature");
+    let candidature= new CreateCandidature();
+    candidature.id = this.idCandidature;
+    candidature.chat=this.leChat;
+    candidature.status=STATUS_REFUSE;
+    candidature.candidat=this.candidat;
+    this.serviceCandidature.updateCandidatureDto(candidature).subscribe(
+      data => {
+        console.log("retour update candidature");
+        this.isCandidatActifPourLeChat = false;
+      }
+    )
+  }
 }

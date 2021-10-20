@@ -58,3 +58,7 @@ mat-card {
   font-size: medium;
   font-weight: bold;
 }
+
+.mat-stroked-button {
+  background-color: #ffffff;
+}

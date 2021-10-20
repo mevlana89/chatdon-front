@@ -47,74 +47,15 @@ export class MesChatsComponent implements OnInit, OnChanges {
        return;
     }
 
-    console.log("test0");
-
-  /*  const currentCityTemperature$ = this.utilisateurService.findAllCatsByDonatorId(3).pipe(map(x => {
-      // console.log("alo")
-      for (let chatsLight of x)
-      {
-        this.candidatureService.getAllCandidaturesByCatId(chatsLight.id).subscribe(data => {
-          chatsLight.lstCandidatures = data;
-          console.log(chatsLight.lstCandidatures);
-          //this.listeChatLight[0].lstCandidatures = chatsLight.lstCandidatures;
-          // chatsLight.candidaturesEnCours = chatsLight.lstCandidatures.filter((candidature: { status: string; }) => candidature.status == "en cours");
-          // console.log (this.listeChatLight);
-        })
-      }
-      return this.candidatureService.getAllCandidaturesByCatId(7).subscribe();}));
-
-      */
-
-      // mergeMap(chat =>
-      // {
-      //   for (let chatsLight of chat)
-      //   return this.candidatureService.getAllCandidaturesByCatId(7);
-      // }));
-
-    //currentCityTemperature$.subscribe(x => console.log(x));
-
-    // this.utilisateurService.findAllCatsByDonatorId(5).pipe(
-    //      mergeMap(chat => this.candidatureService.getAllCandidaturesByCatId(chat.id))).subscribe();
-
-
-
-    // .pipe(
-    //   mergeMap(chat => this.candidatureService.getAllCandidaturesByCatId(chat.id))
-    // );
-
-    // this.utilisateurService.findAllCatsByDonatorId(this.donateur.id).pipe(tap (u => this.listeChatLight = u ),
-    // mergeMap (u => this.candidatureService.getAllCandidaturesByCatId(this.listeChatLight.))
-
-    // ).subscribe( data => { this.listeChatLight = data;});
-
-    console.log("test1");
-//     this.route.paramMap.subscribe((params: ParamMap) => {
        this.utilisateurService.findAllCatsByDonatorId(this.donateur.id).subscribe( data => { console.log (this.listeChatLight = data);
-         console.log("test2");
           for (let chatsLight of this.listeChatLight)
           {
-            console.log("chatsLight : " + chatsLight.id)
-            //this.route.paramMap.subscribe((params: ParamMap) => {
               this.candidatureService.getAllCandidaturesByCatId(chatsLight.id).subscribe( data => { console.log (chatsLight.lstCandidatures = data );
-               // console.log ("this.listeChatLight"+ this.listeChatLight);
-               console.log("chatsLight : " + chatsLight)
                chatsLight.candidaturesEnCours = chatsLight.lstCandidatures.filter(candidature => candidature.status == STATUS_ENCOURS);
                chatsLight.lstCandidaturesRefusees = chatsLight.lstCandidatures.filter(candidature => candidature.status == STATUS_REFUSE);
-               console.log("test3");
-               console.log ("chatsLight.candidaturesEnCours : " + chatsLight.candidaturesEnCours);
-               //console.log ("chatsLight.candidaturesEnCours : " + chatsLight.candidaturesEnCours[0].id);
              })
-          //});
           }
         })
-   //});
-
   }
-
-
-
-//   getDataSynchronous() {
-//     return this.http.get(this.jsonFile).toPromise()
-//  }
 
 }
