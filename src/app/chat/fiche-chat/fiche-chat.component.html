@@ -80,8 +80,10 @@
 <br>
 <div *ngIf="isDonateurDuChat&&isCandidatActifPourLeChat">
   <mat-card>
-    <mat-card-title>Candidature en cours :</mat-card-title>
+    <mat-card-title><mat-icon>account_circle</mat-icon> Candidature en cours :</mat-card-title>
     <span class="intitule">Candidat : </span><span class="contenu">{{ candidat.prenom }} {{ candidat.nom }} </span>
+    <br>
+    <span class="intitule">Email : </span><span class="contenu">{{ candidat.mail }}</span>
   </mat-card>
 </div>
 <mat-toolbar color="primary">
@@ -91,15 +93,21 @@
   </span>
   <span *ngIf="isDonateurDuChat">
     <button mat-raised-button color="warn" (click)="editChat()">Editer la fiche</button>
-    <button mat-raised-button color="warn" (click)="donnerChat()">Le chat a été donnée</button>
   </span>
   <span *ngIf="isCandidat">
     <button mat-raised-button type="button" color="warn" (click)="postuler()">Postuler</button>
+  </span>
+  <span *ngIf="isOldCandidatDuChat">
+    <button mat-stroked-button type="button" (click)="postuler()" disabled>Candidature refusée</button>
+  </span>
+  <span *ngIf="isAutreCandidatureActivePourLeChat">
+    <button mat-stroked-button type="button" (click)="postuler()" disabled>Chat réservé</button>
   </span>
   <span *ngIf="isCandidatDuChat">
     <button mat-raised-button type="button" color="warn" (click)="annulerCandidature()">Annuler ma candidature</button>
   </span>
   <span *ngIf="isDonateurDuChat&&isCandidatActifPourLeChat">
+    <button mat-raised-button color="warn" (click)="donnerChat()">Le chat a été donné</button>
     <button mat-raised-button type="button" color="warn" (click)="refuserCandidature()">Refuser la candidature</button>
   </span>
 
