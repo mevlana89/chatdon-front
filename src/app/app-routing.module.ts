@@ -8,6 +8,7 @@ import { CandidatureComponent } from './candidature/candidature.component';
 import { MesChatsComponent } from './utilisateur/donateur/mes-chats/mes-chats.component';
 import { CreateCandidatureComponent } from './create-candidature/create-candidature.component';
 import { DonateurComponent } from './utilisateur/donateur/donateur.component';
+import { SuggestionChatsComponent } from './utilisateur/candidat/suggestion-chats/suggestion-chats.component';
 
 
 const routes: Routes = [
