@@ -16,6 +16,7 @@ import { UtilisateurModule } from './utilisateur/utilisateur.module';
 import { AccueilComponent } from './accueil/accueil.component';
 import { CandidatureComponent } from './candidature/candidature.component';
 import { CreateCandidatureComponent } from './create-candidature/create-candidature.component';
+import { ConsultCandidatComponent } from './consult-candidat/consult-candidat.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CreateCandidatureComponent } from './create-candidature/create-candidat
     NavBarComponent,
     FooterComponent,
     CandidatureComponent,
-    CreateCandidatureComponent
+    CreateCandidatureComponent,
+    ConsultCandidatComponent
   ],
   imports: [
     BrowserModule,
