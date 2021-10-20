@@ -38,6 +38,9 @@ export class ChatService {
     return this.http.post<boolean>(`${this.baseUrl}` + "/deleteChatById/" + `${chatId}`, this.optionRequete);
   }
 
+  donnerChat(chatId: number): Observable<boolean>{
+    return this.http.get<any>(`${this.baseUrl}` + "/chats/" + chatId + "/donnerChat", this.optionRequete);
+  }
 
 }
 
