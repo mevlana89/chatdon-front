@@ -9,6 +9,7 @@ import { MesChatsComponent } from './utilisateur/donateur/mes-chats/mes-chats.co
 import { CreateCandidatureComponent } from './create-candidature/create-candidature.component';
 import { DonateurComponent } from './utilisateur/donateur/donateur.component';
 import { SuggestionChatsComponent } from './utilisateur/candidat/suggestion-chats/suggestion-chats.component';
+import { EditDonateurComponent } from './utilisateur/edit-donateur/edit-donateur.component';
 
 
 const routes: Routes = [
@@ -34,10 +35,10 @@ const routes: Routes = [
   },
   {
     path: 'candidat',
-    component: CandidatComponent,
+    component: DonateurComponent,
   },
   {
-    path: 'donateur',
+    path: 'monCompte',
     component: DonateurComponent,
   },
   {
@@ -48,6 +49,9 @@ const routes: Routes = [
   {
     path:'candidatures',
     component:CandidatureComponent,
+  },
+  {path:'editDonateur/:id',
+  component:EditDonateurComponent,
   },
   {
     path:'createcandidature',

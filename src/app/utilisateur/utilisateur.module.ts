@@ -5,13 +5,15 @@ import { DonateurComponent } from './donateur/donateur.component';
 import { SharedModule } from '../shared/shared.module';
 import { MesChatsComponent } from './donateur/mes-chats/mes-chats.component';
 import { SuggestionChatsComponent } from './candidat/suggestion-chats/suggestion-chats.component';
+import { EditDonateurComponent } from './edit-donateur/edit-donateur.component';
 
 @NgModule({
   declarations: [
     CandidatComponent,
     DonateurComponent,
     MesChatsComponent,
-    SuggestionChatsComponent
+    SuggestionChatsComponent,
+    EditDonateurComponent
   ],
   imports: [
     CommonModule,

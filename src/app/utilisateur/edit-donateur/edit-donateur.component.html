@@ -1,0 +1,70 @@
+<form class="form-container" [formGroup]="createDonateurForm" #myForm="ngForm">
+  <div>
+    Form submitted ? {{myForm.submitted}}
+    Form valid ? {{createDonateurForm.valid}}
+    Form invalid ? {{createDonateurForm.valid}}
+  </div>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> Fiche donateur du chat </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+       <mat-card-title-group>
+          <mat-form-field appearance="fill">
+            <mat-label> Nom : </mat-label>
+            <input name="nom" matInput placeholder="Nom" type="text" formControlName="nom" />
+            <mat-icon matSuffix color="primary">account_box</mat-icon>
+
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label> Prenom : </mat-label>
+            <input matInput type="text" placeholder="Prénom" formControlName="prenom" />
+            <mat-icon matSuffix color="primary">account_box</mat-icon>
+          </mat-form-field>
+      </mat-card-title-group>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" placeholder="james.bond@example.com" formControlName="mail">
+        <mat-icon matSuffix color="primary">email</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Numéro de télpéhone</mat-label>
+        <input matInput type="number" placeholder="0158320000" formControlName="telephone">
+        <mat-icon matSuffix color="primary">phone</mat-icon>
+      </mat-form-field>
+      <span></span>
+      <mat-card-title-group formGroupName="adresseDTO">
+          <mat-form-field appearance="fill">
+            <mat-label>Rue</mat-label>
+            <input matInput type="text" placeholder="N° et nom de rue" formControlName="rue">
+            <mat-icon matSuffix color="primary">home</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Code postal</mat-label>
+            <input matInput type="text" placeholder="Code postal" formControlName="codePostal">
+            <mat-icon matSuffix color="primary">home</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Ville</mat-label>
+            <input matInput type="text" placeholder="Ville" formControlName="ville">
+            <mat-icon matSuffix color="primary">home</mat-icon>
+          </mat-form-field>
+      </mat-card-title-group>
+
+    </mat-card-content>
+  </mat-card>
+</form>
+
+<mat-toolbar color="primary">
+  <span class="fill-space"></span>
+  <span>
+    <a [routerLink]="['/candidatures']"><button mat-raised-button>Retour</button></a>
+  </span>
+</mat-toolbar>
+
+

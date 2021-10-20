@@ -8,6 +8,7 @@ import { Candidat } from 'src/app/utilisateur/candidat';
 import { CandidatureService } from 'src/app/candidature/candidature.service';
 import { Candidature } from 'src/app/candidature/candidature.model';
 import { CreateCandidature } from 'src/app/candidature/candidature';
+import { UtilisateurService } from '../../utilisateur/utilisateur.service';
 
 
 @Component({
@@ -16,9 +17,9 @@ import { CreateCandidature } from 'src/app/candidature/candidature';
   styleUrls: ['./fiche-chat.component.css']
 })
 export class FicheChatComponent implements OnInit {
- 
 
-  constructor(private serviceCandidature:CandidatureService,private serviceChat: ChatService, private route: ActivatedRoute, private router: Router) { }
+
+  constructor(private serviceCandidature:CandidatureService,private serviceChat: ChatService, private utilisateurService: UtilisateurService, private route: ActivatedRoute, private router: Router) { }
 
   leChat: Chat = new Chat();
   chatId: number = 0;
@@ -121,8 +122,43 @@ export class FicheChatComponent implements OnInit {
         }
       )
     }
-   
+
   }
 
+  voirDonateur(){
+    console.log('voirDonateur - le candidat', this.candidat);
+    console.log('voirDonateur - le donateur: ', this.donateur);
+    console.log('voirDonateur - le chat: ', this.leChat);
+    console.log('voirDonateur - le donateurid: ', this.leChat.donateur?.id);
+    if ( this.leChat.donateur?.id != null && this.leChat.donateur?.id > 0){
+      this.utilisateurService.getDonateurById(this.leChat.donateur?.id).subscribe(
+        (data) =>{
+          console.log('retour voirDonateur' + this.leChat.donateur?.id + " data : " + data);
+
+          this.router.navigate(['/editDonateur', this.leChat.donateur?.id]);
+        }
+      )
+
+    }
+  }
+
+
+  createChat() {
+    console.log("debut create");
+    if (this.leChat.nom.length == 0){
+      console.log("chat sans nom... sortie");
+      return;
+    }
+    console.log(this.leChat.nom + ", " + this.leChat.caractere + ", " + this.leChat.race);
+    this.serviceChat.createChat(this.leChat).subscribe(
+    rsp => {
+      console.log("retour service => id : " + rsp.id + " nom : " + rsp.nom + ", " + rsp.caractere + ", " + rsp.race);
+      this.router.navigate(['/fichechat/', rsp.id]);
+    },
+    error => {
+      console.log(" createChat error!");
+      console.log(error);
+    });
+  }
 
 }
