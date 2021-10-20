@@ -7,6 +7,7 @@ import { Donateur } from 'src/app/utilisateur/donateur';
 import { Candidat } from 'src/app/utilisateur/candidat';
 import { CandidatureService } from 'src/app/candidature/candidature.service';
 import { CreateCandidature } from 'src/app/candidature/candidature';
+import { UtilisateurService } from '../../utilisateur/utilisateur.service';
 
 
 @Component({
@@ -16,7 +17,8 @@ import { CreateCandidature } from 'src/app/candidature/candidature';
 })
 export class FicheChatComponent implements OnInit {
 
-  constructor(private serviceCandidature:CandidatureService,private serviceChat: ChatService, private route: ActivatedRoute, private router: Router) { }
+
+  constructor(private serviceCandidature:CandidatureService,private serviceChat: ChatService, private utilisateurService: UtilisateurService, private route: ActivatedRoute, private router: Router) { }
 
   leChat: Chat = new Chat();
   chatId: number = 0;
@@ -120,6 +122,7 @@ export class FicheChatComponent implements OnInit {
   editChat() {
     this.router.navigate(['/updatechat/', this.leChat.id]);
   }
+
   postuler(){
     let candidature= new CreateCandidature();
     candidature.chat=this.leChat;
@@ -149,12 +152,30 @@ export class FicheChatComponent implements OnInit {
     }
   }
 
-  donnerChat(){
+
+  voirDonateur(){
+    console.log('voirDonateur - le candidat', this.candidat);
+    console.log('voirDonateur - le donateur: ', this.donateur);
+    console.log('voirDonateur - le chat: ', this.leChat);
+    console.log('voirDonateur - le donateurid: ', this.leChat.donateur?.id);
+    if ( this.leChat.donateur?.id != null && this.leChat.donateur?.id > 0){
+      this.utilisateurService.getDonateurById(this.leChat.donateur?.id).subscribe(
+        (data) =>{
+          console.log('retour voirDonateur' + this.leChat.donateur?.id + " data : " + data);
+
+          this.router.navigate(['/editDonateur', this.leChat.donateur?.id]);
+        }
+      )
+    }
+  }
+
+ donnerChat(){
     this.serviceChat.donnerChat(this.chatId).subscribe(x => {
       alert('Nous vous remercions de la donation, le chat a été retiré de notre base de donnée.');
       this.router.navigate(['/mesChats']);
     });
   }
+
 
   refuserCandidature() {
     console.log("refuser candidature");
