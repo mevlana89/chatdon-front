@@ -1,31 +1,37 @@
-<div class = "center">
+<div class="center">
 
     <ng-template *ngIf="listeChatLight.length>0;then afficherLesChats else pasDeChat"> </ng-template>
-    
+
     <ng-template #afficherLesChats>
         <div class="catLight">
-        <div *ngFor="let chatLight of listeChatLight" class="catLight border" >
-            <app-chat-light  [chat]="chatLight" ></app-chat-light>
-            <div class="margin">
-                <div *ngIf="chatLight.candidaturesEnCours.length>0; else pasDeCandidatureEnCours">
-                <div *ngFor="let candidatureEnCours of chatLight.candidaturesEnCours" >
-                    <p>Candidature actuelle : <a [routerLink]="['/candidat/', candidatureEnCours.candidat.id]"> {{ candidatureEnCours.candidat.prenom }} {{ candidatureEnCours.candidat.nom }}</a></p>
-                </div>
-                </div>
-                <ng-template #pasDeCandidatureEnCours><div>Vous n'avez pas de candidature en cours</div></ng-template>
-
-                <div *ngIf="chatLight.lstCandidaturesRefusees.length>0; else pasDeCandidatureRefuse">
-                    Candidature(s) refusée(s) : 
-                    <div *ngFor="let candidaturesRefusees of chatLight.lstCandidaturesRefusees" >
-                        <p> - {{ candidaturesRefusees.candidat.prenom }} {{ candidaturesRefusees.candidat.nom }}</p>
+            <div *ngFor="let chatLight of listeChatLight" class="catLight border">
+                <app-chat-light [chat]="chatLight"></app-chat-light>
+                <div class="margin">
+                    <div *ngIf="chatLight.candidaturesEnCours; else pasDeCandidatureEnCours">
+                        <div *ngFor="let candidatureEnCours of chatLight.candidaturesEnCours">
+                            <p>Candidature actuelle : <a [routerLink]="['/candidat/', candidatureEnCours.candidat.id]">
+                                    {{ candidatureEnCours.candidat.prenom }} {{ candidatureEnCours.candidat.nom }}</a>
+                            </p>
+                        </div>
                     </div>
+                    <ng-template #pasDeCandidatureEnCours>
+                        <div>Vous n'avez pas de candidature en cours</div>
+                    </ng-template>
+
+                    <div *ngIf="chatLight.lstCandidaturesRefusees; else pasDeCandidatureRefuse">
+                        Candidature(s) refusée(s) :
+                        <div *ngFor="let candidaturesRefusees of chatLight.lstCandidaturesRefusees">
+                            <p> - {{ candidaturesRefusees.candidat.prenom }} {{ candidaturesRefusees.candidat.nom }}</p>
+                        </div>
+                    </div>
+                    <ng-template #pasDeCandidatureRefuse>
+                        <div>Vous n'avez pas de candidature refusée</div>
+                    </ng-template>
                 </div>
-                <ng-template #pasDeCandidatureRefuse><div>Vous n'avez pas de candidature refusée</div></ng-template>
             </div>
         </div>
-    </div>
     </ng-template>
-    
+
     <ng-template #pasDeChat>
         <h1> Vous n'avez pas de chat, merci de créer une fiche chat. </h1>
     </ng-template>
