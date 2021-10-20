@@ -96,7 +96,9 @@ export class NavBarComponent implements OnInit {
   updateRole() {
 
     this.role = localStorage.getItem("role");
-
+    if (this.role != null) {
+     // this.utilisateurService.logginChange.next(this.role);
+    }
     if ((this.role == null)||(this.role=="")) {
       this.isVisiteur = true;
       this.isDonateur = false;

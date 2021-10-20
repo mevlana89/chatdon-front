@@ -5,7 +5,7 @@ import { Candidature } from 'src/app/candidature/candidature.model';
 import { CandidatureService } from 'src/app/candidature/candidature.service';
 import { Chat } from 'src/app/chat/Chat';
 import { ChatLight } from 'src/app/shared/liste-chat-light/chat-light/chat-light';
-import { DONATEUR } from 'src/app/shared/listes';
+import { DONATEUR, STATUS_ENCOURS, STATUS_REFUSE } from 'src/app/shared/listes';
 import { Donateur } from '../../donateur';
 import { UtilisateurService } from '../../utilisateur.service';
 
@@ -18,7 +18,7 @@ export class MesChatsComponent implements OnInit, OnChanges {
   responseData: any;
 
   constructor(private route: ActivatedRoute, private router: Router, public utilisateurService: UtilisateurService, private candidatureService: CandidatureService) { }
-  
+
   ngOnChanges(changes: SimpleChanges): void {
     throw new Error('Method not implemented.');
   }
@@ -46,7 +46,7 @@ export class MesChatsComponent implements OnInit, OnChanges {
        this.router.navigate(['/']);
        return;
     }
-    
+
     console.log("test0");
 
   /*  const currentCityTemperature$ = this.utilisateurService.findAllCatsByDonatorId(3).pipe(map(x => {
@@ -62,15 +62,15 @@ export class MesChatsComponent implements OnInit, OnChanges {
         })
       }
       return this.candidatureService.getAllCandidaturesByCatId(7).subscribe();}));
-      
+
       */
 
-      // mergeMap(chat => 
+      // mergeMap(chat =>
       // {
       //   for (let chatsLight of chat)
       //   return this.candidatureService.getAllCandidaturesByCatId(7);
       // }));
-    
+
     //currentCityTemperature$.subscribe(x => console.log(x));
 
     // this.utilisateurService.findAllCatsByDonatorId(5).pipe(
@@ -84,7 +84,7 @@ export class MesChatsComponent implements OnInit, OnChanges {
 
     // this.utilisateurService.findAllCatsByDonatorId(this.donateur.id).pipe(tap (u => this.listeChatLight = u ),
     // mergeMap (u => this.candidatureService.getAllCandidaturesByCatId(this.listeChatLight.))
-    
+
     // ).subscribe( data => { this.listeChatLight = data;});
 
     console.log("test1");
@@ -98,8 +98,8 @@ export class MesChatsComponent implements OnInit, OnChanges {
               this.candidatureService.getAllCandidaturesByCatId(chatsLight.id).subscribe( data => { console.log (chatsLight.lstCandidatures = data );
                // console.log ("this.listeChatLight"+ this.listeChatLight);
                console.log("chatsLight : " + chatsLight)
-               chatsLight.candidaturesEnCours = chatsLight.lstCandidatures.filter(candidature => candidature.status == "en cours");
-               chatsLight.lstCandidaturesRefusees = chatsLight.lstCandidatures.filter(candidature => candidature.status == "refusée");
+               chatsLight.candidaturesEnCours = chatsLight.lstCandidatures.filter(candidature => candidature.status == STATUS_ENCOURS);
+               chatsLight.lstCandidaturesRefusees = chatsLight.lstCandidatures.filter(candidature => candidature.status == STATUS_REFUSE);
                console.log("test3");
                console.log ("chatsLight.candidaturesEnCours : " + chatsLight.candidaturesEnCours);
                //console.log ("chatsLight.candidaturesEnCours : " + chatsLight.candidaturesEnCours[0].id);
@@ -111,10 +111,10 @@ export class MesChatsComponent implements OnInit, OnChanges {
 
   }
 
-  
+
 
 //   getDataSynchronous() {
 //     return this.http.get(this.jsonFile).toPromise()
 //  }
-  
+
 }

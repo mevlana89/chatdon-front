@@ -129,7 +129,9 @@
   ]
 
   export const STATUS_ENCOURS: string='En cours';
-  export const STATUS_ANNULE : string='Annulée';
+  // export const STATUS_ANNULE : string='Annulée';
+  export const STATUS_REFUSE : string='Refusée';
+  // export const STATUS_ACCEPTEE : string='Acceptée';
 
 
 
