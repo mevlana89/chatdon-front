@@ -63,7 +63,7 @@ export class SuggestionChatsComponent implements OnInit, OnChanges {
     }
     
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.servicelisteChat.getSuggestCatsByCandidatId(this.candidat.id, this.filterDto).subscribe( data => { console.log (this.listeChatLight = data) })
+      this.servicelisteChat.getSuggestCatsByCandidatId(this.candidat.id, this.orderForm.value).subscribe( data => { console.log (this.listeChatLight = data) })
   });
   }
 
