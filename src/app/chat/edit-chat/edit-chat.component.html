@@ -96,13 +96,13 @@
     <mat-card-title><mat-icon>people</mat-icon> Sociabilité</mat-card-title>
     <mat-grid-list cols="3" rowHeight="30px">
       <mat-grid-tile>
-          <div><mat-checkbox class="form-control" [checked]=leChat.sociableEnfant [(ngModel)]=leChat.sociableEnfant name="sociableEnfant" ><mat-icon>child_care</mat-icon> Adapté aux enfants </mat-checkbox></div>
+          <div><mat-checkbox class="form-control" color="primary" [checked]=leChat.sociableEnfant [(ngModel)]=leChat.sociableEnfant name="sociableEnfant" ><mat-icon>child_care</mat-icon> Adapté aux enfants </mat-checkbox></div>
         </mat-grid-tile>
         <mat-grid-tile>
-          <div><mat-checkbox class="form-control" [checked]=leChat.sociableChien [(ngModel)]=leChat.sociableChien name="sociableChien">Accepte les chiens </mat-checkbox></div>
+          <div><mat-checkbox class="form-control" color="primary" [checked]=leChat.sociableChien [(ngModel)]=leChat.sociableChien name="sociableChien">Accepte les chiens </mat-checkbox></div>
         </mat-grid-tile>
         <mat-grid-tile>
-          <div><mat-checkbox class="form-control" [checked]=leChat.sociableChat [(ngModel)]=leChat.sociableChat name="sociableChat">Accepte les autres chats </mat-checkbox></div>
+          <div><mat-checkbox class="form-control" color="primary" [checked]=leChat.sociableChat [(ngModel)]=leChat.sociableChat name="sociableChat">Accepte les autres chats </mat-checkbox></div>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-card>

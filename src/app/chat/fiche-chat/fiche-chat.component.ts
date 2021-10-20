@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Chat } from '../Chat';
 import { ChatService } from '../chat.service';
-import { DONATEUR, CANDIDAT,  STATUS_ENCOURS } from 'src/app/shared/listes';
+import { DONATEUR, CANDIDAT,  STATUS_ENCOURS, STATUS_REFUSE } from 'src/app/shared/listes';
 import { Donateur } from 'src/app/utilisateur/donateur';
 import { Candidat } from 'src/app/utilisateur/candidat';
 import { CandidatureService } from 'src/app/candidature/candidature.service';
-import { Candidature } from 'src/app/candidature/candidature.model';
 import { CreateCandidature } from 'src/app/candidature/candidature';
 
 
@@ -16,7 +15,6 @@ import { CreateCandidature } from 'src/app/candidature/candidature';
   styleUrls: ['./fiche-chat.component.css']
 })
 export class FicheChatComponent implements OnInit {
- 
 
   constructor(private serviceCandidature:CandidatureService,private serviceChat: ChatService, private route: ActivatedRoute, private router: Router) { }
 
@@ -27,6 +25,8 @@ export class FicheChatComponent implements OnInit {
   isCandidatDuChat: boolean = false;
   isCandidat: boolean = false;
   isOldCandidatDuChat:boolean=false;
+  isCandidatActifPourLeChat: boolean = false;
+
 
   donateur: Donateur = new Donateur;
   candidat: Candidat = new Candidat;
@@ -41,7 +41,6 @@ export class FicheChatComponent implements OnInit {
       this.chatId = parseInt(params.get('id')!);
 
       this.serviceChat.getChatById(this.chatId).subscribe(data => {
-
         this.leChat = data;
         let role: string | null = localStorage.getItem('role');
         if (role == DONATEUR) {
@@ -52,6 +51,17 @@ export class FicheChatComponent implements OnInit {
             if (this.donateur.id == this.leChat.donateur?.id) {
               console.log("id identique, donateur du chat");
               this.isDonateurDuChat = true;
+              this.serviceCandidature.getAllCandidaturesDtoByCatId(this.leChat.id).subscribe(
+                data=>{
+                  let candidatures:CreateCandidature[]=data;
+                  for (var candidature of candidatures){
+                    if (candidature.status==STATUS_ENCOURS) {
+                      this.isCandidatActifPourLeChat = true;
+                      this.candidat = candidature.candidat;
+                      this.idCandidature = candidature.id
+                    }
+                  }
+              });
             }
           }
         }
@@ -121,8 +131,20 @@ export class FicheChatComponent implements OnInit {
         }
       )
     }
-   
+
   }
 
-
+  refuserCandidature() {
+    console.log("refuser candidature");
+    let candidature= new CreateCandidature();
+    candidature.id = this.idCandidature;
+    candidature.chat=this.leChat;
+    candidature.status=STATUS_REFUSE;
+    candidature.candidat=this.candidat;
+    this.serviceCandidature.updateCandidatureDto(candidature).subscribe(
+      data => {
+        this.ngOnInit();
+      }
+    )
+  }
 }
