@@ -12,7 +12,7 @@ import { Candidat } from '../../candidat';
   templateUrl: './suggestion-chats.component.html',
   styleUrls: ['./suggestion-chats.component.css']
 })
-export class SuggestionChatsComponent implements OnInit, OnChanges {
+export class SuggestionChatsComponent implements OnInit{
 
   public displaySearch = false;
 
@@ -31,18 +31,18 @@ export class SuggestionChatsComponent implements OnInit, OnChanges {
       public Pelages = PELAGES;
       public Regions = REGIONS;
 
-  filterDto: FilterDto = new FilterDto();
+  // filterDto: FilterDto = new FilterDto();
   
   listeChatLight: ChatLight[] = [];
 
   candidat: any = Candidat;
 
   constructor(private servicelisteChat : ListeChatLightService,private router: Router, private route: ActivatedRoute, private fb: FormBuilder) { }
-  ngOnChanges(changes: SimpleChanges): void {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.servicelisteChat.getSuggestCatsByCandidatId(this.candidat.id, this.filterDto).subscribe( data => { console.log (this.listeChatLight = data) })
-  });
-  }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   this.route.paramMap.subscribe((params: ParamMap) => {
+  //     this.servicelisteChat.getSuggestCatsByCandidatId(this.candidat.id, this.filterDto).subscribe( data => { console.log (this.listeChatLight = data) })
+  // });
+  // }
 
   ngOnInit(): void {
     let role: string | null = localStorage.getItem('role');
@@ -72,10 +72,7 @@ export class SuggestionChatsComponent implements OnInit, OnChanges {
   }
 
   rechercheChats() {
-    this.filterDto = this.orderForm.value;
     this.servicelisteChat.getSuggestCatsByCandidatId(this.candidat.id, this.orderForm.value).subscribe( data => { console.log (this.listeChatLight = data) });
-
-    //this.servicelisteChat.getAllUnreservedCats(this.orderForm.value).subscribe( data => { console.log (this.listeChatLight = data) });
   }
 
 
