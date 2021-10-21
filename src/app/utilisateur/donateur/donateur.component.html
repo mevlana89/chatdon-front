@@ -34,8 +34,8 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Numéro de télpéhone</mat-label>
-        <input matInput type="number" placeholder="0158320000" formControlName="telephone">
+        <mat-label>Numéro de téléphone</mat-label>
+        <input matInput type="text" placeholder="0158320000" formControlName="telephone">
         <mat-error *ngIf="createDonateurForm.controls['telephone'].errors && !createDonateurForm.controls['telephone'].pristine">
           <div [hidden]="!createDonateurForm.controls['telephone'].invalid">le champ ne doit contenir que 10 chiffres</div>
         </mat-error>

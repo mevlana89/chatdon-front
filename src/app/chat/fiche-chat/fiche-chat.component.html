@@ -72,10 +72,10 @@
   <mat-card-title><mat-icon>event_note</mat-icon> Présentation</mat-card-title>
   <mat-grid-list cols="4" rowHeight="150px">
     <mat-grid-tile  *ngFor="let photos of leChat.lstPhotos">
-      <img mat-card-image src="{{photos.cheminPhoto}}" height="145" >
+      <div><img mat-card-image src="{{photos.cheminPhoto}}" height="190" ></div>
     </mat-grid-tile>
   </mat-grid-list>
-  <mat-card-content>{{ leChat.descriptif }}</mat-card-content>
+  <mat-card-content><br>{{ leChat.descriptif }}</mat-card-content>
 </mat-card>
 <br>
 <div *ngIf="isDonateurDuChat&&isCandidatActifPourLeChat">
