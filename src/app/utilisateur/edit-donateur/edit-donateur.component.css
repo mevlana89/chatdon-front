@@ -37,3 +37,7 @@
   margin-top: 30px;
   margin-left: 8px;
 }
+
+.fill-space {
+  flex: 1 1 auto;
+}

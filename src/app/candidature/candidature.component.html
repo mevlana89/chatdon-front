@@ -3,10 +3,10 @@
 <div *ngIf="candidatures?.length==0">Vous n'avez aucune candidature!</div>
 <div *ngFor="let candidature of candidatures" class="catLight">
     <app-chat-light [chat]="candidature.chat"></app-chat-light>
-     <mat-grid-list cols="1" rowHeight="20px" class="status"></mat-grid-list> 
+     <mat-grid-list cols="1" rowHeight="20px" class="status"></mat-grid-list>
     <button mat-button color="primary">Candidature {{candidature.status}}</button>
-    <mat-grid-list cols="1" rowHeight="20px" class="button"></mat-grid-list> 
+    <mat-grid-list cols="1" rowHeight="20px" class="button"></mat-grid-list>
     <a mat-raised-button type="button" color="primary" *ngIf='candidature.status=="En cours"' (click)="annulerCandidature(candidature.id)">Annuler ma candidature</a>
-    <!-- <a mat-raised-button type="button" color="primary" *ngIf='candidature.status!="En cours"'>Masquer ma candidature</a>   -->
+    <a mat-raised-button type="button" color="primary" *ngIf='candidature.status=="Refusée"' (click)="annulerCandidature(candidature.id)">Masquer ma candidature</a>
 </div>
 </mat-card>
