@@ -2,7 +2,6 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ChatLight } from 'src/app/shared/liste-chat-light/chat-light/chat-light';
-import { FilterDto } from 'src/app/shared/liste-chat-light/FilterDto';
 import { ListeChatLightService } from 'src/app/shared/liste-chat-light/liste-chat-light.service';
 import { CANDIDAT, CARACTERES, CATEGORIES_AGE, PELAGES, RACES, REGIONS, SEXES, TAILLES } from 'src/app/shared/listes';
 import { Candidat } from '../../candidat';
@@ -31,18 +30,12 @@ export class SuggestionChatsComponent implements OnInit{
       public Pelages = PELAGES;
       public Regions = REGIONS;
 
-  // filterDto: FilterDto = new FilterDto();
   
   listeChatLight: ChatLight[] = [];
 
   candidat: any = Candidat;
 
   constructor(private servicelisteChat : ListeChatLightService,private router: Router, private route: ActivatedRoute, private fb: FormBuilder) { }
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   this.route.paramMap.subscribe((params: ParamMap) => {
-  //     this.servicelisteChat.getSuggestCatsByCandidatId(this.candidat.id, this.filterDto).subscribe( data => { console.log (this.listeChatLight = data) })
-  // });
-  // }
 
   ngOnInit(): void {
     let role: string | null = localStorage.getItem('role');
